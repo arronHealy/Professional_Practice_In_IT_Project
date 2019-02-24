@@ -20,7 +20,7 @@ const db =
 
 //connect to db
 mongoose
-  .connect(db)
+  .connect(db, { useNewUrlParser: true })
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.log(err));
 
