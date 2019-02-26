@@ -4,7 +4,11 @@ const mongoose = require("mongoose");
 
 const bodyParser = require("body-parser");
 
+const keys = require("./configuration/SecurityKeys");
+
 const users = require("./routes/users");
+
+const passport = require("passport");
 
 const app = express();
 
@@ -15,8 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //require database
-const db =
-  "mongodb://arronHealy:IrksDory15@ds137913.mlab.com:37913/learning-mongo-db";
+const db = keys.mongoConnect;
 
 //connect to db
 mongoose
@@ -25,6 +28,12 @@ mongoose
   .catch(err => console.log(err));
 
 const port = 5000;
+
+//passport middleware
+app.use(passport.initialize());
+
+//passport config file
+require("./configuration/passport")(passport);
 
 app.use("/api/users", users);
 

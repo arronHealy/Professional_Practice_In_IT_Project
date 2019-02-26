@@ -6,11 +6,15 @@ const bcrypt = require("bcryptjs");
 
 const jwt = require("jsonwebtoken");
 
+const passport = require("passport");
+
+const keys = require("../configuration/SecurityKeys");
+
 //use model for user
 const User = require("../models/User");
 
 //test route
-router.get("/test", (req, res) => res.json({ msg: "users working" }));
+//router.get("/test", (req, res) => res.json({ msg: "users working" }));
 
 //create register user route
 router.post("/register", (req, res) => {
@@ -24,14 +28,18 @@ router.post("/register", (req, res) => {
         password: req.body.password
       });
 
+      //generate salt to protect against attacks
       bcrypt.genSalt(10, (err, salt) => {
+        //hash password
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) {
             throw err;
           }
 
+          //assign hashed password
           newUser.password = hash;
 
+          //save object new state
           newUser
             .save()
             .then(user => res.json(user))
@@ -66,7 +74,7 @@ router.post("/login", (req, res) => {
         };
 
         //sign token
-        jwt.sign(payload, "secretKey", { expiresIn: 7200 }, (err, token) => {
+        jwt.sign(payload, keys.secretKey, { expiresIn: 7200 }, (err, token) => {
           res.json({
             success: true,
             token: "Bearer " + token
@@ -80,5 +88,19 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+//return authenticated current user
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    //current user info
+    res.json({
+      id: req.user.id,
+      name: req.user.name,
+      email: req.user.email
+    });
+  }
+);
 
 module.exports = router;
