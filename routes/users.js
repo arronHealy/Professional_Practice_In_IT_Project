@@ -13,11 +13,22 @@ const keys = require("../configuration/SecurityKeys");
 //use model for user
 const User = require("../models/User");
 
+//load input validation
+const validateRegisterInput = require("../validator/register");
+const validateLoginInput = require("../validator/login");
+
 //test route
 //router.get("/test", (req, res) => res.json({ msg: "users working" }));
 
 //create register user route
 router.post("/register", (req, res) => {
+  const { errors, isValid } = validateRegisterInput(req.body);
+
+  //check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
       return res.status(400).json({ email: "Email already exists" });
@@ -52,6 +63,13 @@ router.post("/register", (req, res) => {
 
 //create login user route
 router.post("/login", (req, res) => {
+  const { errors, isValid } = validateLoginInput(req.body);
+
+  //check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   const email = req.body.email;
   const password = req.body.password;
 
