@@ -21,6 +21,13 @@ class Register extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
+    // redirects user to dashboard if logged in and trying to access login or resister pages
+    componentDidMount() {
+      if (this.props.auth.isAuthenticated) {
+        this.props.history.push('/dashboard');
+      }
+    }
+
     // runs when component receives new properties
     componentWillReceiveProps (nextProps) {
       if (nextProps.errors) {
@@ -65,15 +72,15 @@ class Register extends Component {
                   </div>
                   <div className="form-group">
                     <input type="email" className={ classnames("form-control form-control-lg", { "is-invalid": errors.email }) } placeholder="Email Address" name="email" value = { this.state.email } onChange = { this.onChange } />
-                    { errors.email && (<div className="invalid-feedback">{ errors.name }</div>)}
+                    { errors.email && (<div className="invalid-feedback">{ errors.email }</div>)}
                   </div>
                   <div className="form-group">
                     <input type="password" className={ classnames("form-control form-control-lg", { "is-invalid": errors.password }) } placeholder="Password" name="password" value = { this.state.password } onChange = { this.onChange } />
-                    { errors.password && (<div className="invalid-feedback">{ errors.name }</div>)}
+                    { errors.password && (<div className="invalid-feedback">{ errors.password }</div>)}
                   </div>
                   <div className="form-group">
                     <input type="password" className={ classnames("form-control form-control-lg", { "is-invalid": errors.password2 }) } placeholder="Confirm Password" name="password2" value = { this.state.password2 } onChange = { this.onChange } />
-                    { errors.password2 && (<div className="invalid-feedback">{ errors.name }</div>)}
+                    { errors.password2 && (<div className="invalid-feedback">{ errors.password2 }</div>)}
                   </div>
                   <input type="submit" className="btn btn-success btn-block mt-4" />
                 </form>
@@ -85,6 +92,7 @@ class Register extends Component {
   }
 }
 
+// prop types
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
