@@ -91,7 +91,7 @@ router.post("/login", (req, res) => {
           name: user.name
         };
 
-        //sign token
+        //create signed token
         jwt.sign(payload, keys.secretKey, { expiresIn: 7200 }, (err, token) => {
           res.json({
             success: true,

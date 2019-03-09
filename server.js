@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const keys = require("./configuration/SecurityKeys");
 
 const users = require("./routes/users");
+const profile = require("./routes/usersProfile");
 
 const passport = require("passport");
 
@@ -35,6 +36,8 @@ app.use(passport.initialize());
 //passport config file
 require("./configuration/passport")(passport);
 
+//use backend routes
 app.use("/api/users", users);
+app.use("/api/profile", profile);
 
 app.listen(port, () => console.log("app running on port " + port));
