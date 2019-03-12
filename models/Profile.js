@@ -22,10 +22,6 @@ const ProfileSchema = new Schema({
   website: {
     type: String
   },
-  favoriteGenres: {
-    type: [String],
-    required: true
-  },
   bio: {
     type: String
   },
