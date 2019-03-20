@@ -7,7 +7,7 @@ import {
   GET_ERRORS
 } from "./types";
 
-//create profile
+//create profile for user
 export const createProfile = (data, history) => dispatch => {
   axios
     .post("/api/profile", data)
@@ -20,7 +20,7 @@ export const createProfile = (data, history) => dispatch => {
     );
 };
 
-//get current profile
+//get current users profile
 export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading());
   axios
@@ -46,7 +46,7 @@ export const setProfileLoading = () => {
   };
 };
 
-// clear profile
+// clear current profile after logout
 export const clearCurrentProfile = () => {
   return {
     type: CLEAR_CURRENT_PROFILE

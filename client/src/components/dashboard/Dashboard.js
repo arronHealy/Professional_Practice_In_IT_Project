@@ -21,6 +21,8 @@ class Dashboard extends Component {
       content = <Spinner />;
     } else {
       //check if logged in user has profile
+
+      //check profile has data
       if (Object.keys(profile).length > 0) {
         content = <h4>TODO display profile</h4>;
       } else {
