@@ -13,8 +13,7 @@ const ProfileSchema = new Schema({
     required: true
   },
   profileImage: {
-    type: String,
-    default: "../Images/noProfilePic.jpg"
+    type: String
   },
   location: {
     type: String
