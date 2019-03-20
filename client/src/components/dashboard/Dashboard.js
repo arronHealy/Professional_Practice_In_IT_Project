@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import { getCurrentProfile } from "../../actions/profileActions";
 import Spinner from "../../utilities/Spinner";
+import { Link } from "react-router-dom";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -19,7 +20,21 @@ class Dashboard extends Component {
     if (profile === null || loading) {
       content = <Spinner />;
     } else {
-      content = <h1>Hello</h1>;
+      //check if logged in user has profile
+      if (Object.keys(profile).length > 0) {
+        content = <h4>TODO display profile</h4>;
+      } else {
+        //user is logged in but no profile
+        content = (
+          <div>
+            <p className="lead text-muted">Welcome {user.name}</p>
+            <p>You have not yet setup a profile, please add some info!</p>
+            <Link className="btn btn-lg btn-success" to="/create-profile">
+              Create your Profile
+            </Link>
+          </div>
+        );
+      }
     }
 
     return (
