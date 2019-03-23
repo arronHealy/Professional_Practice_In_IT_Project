@@ -40,12 +40,12 @@ class CreateProfile extends Component {
       const profile = nextProps.profile.profile;
 
       // make fields empty if not filled in
-      profile.website = !isEmpty(profile.company) ? profile.website : '';
-      profile.bio = !isEmpty(profile.company) ? profile.bio : '';
-      profile.facebook = !isEmpty(profile.company) ? profile.facebook : '';
-      profile.twitter = !isEmpty(profile.company) ? profile.twitter : '';
-      profile.youtube = !isEmpty(profile.company) ? profile.youtube : '';
-      profile.linkedin = !isEmpty(profile.company) ? profile.linkedin : '';
+      //profile.website = !isEmpty(profile.company) ? profile.website : '';
+      //profile.bio = !isEmpty(profile.company) ? profile.bio : '';
+      //profile.facebook = !isEmpty(profile.company) ? profile.facebook : '';
+      //profile.twitter = !isEmpty(profile.company) ? profile.twitter : '';
+      //profile.youtube = !isEmpty(profile.company) ? profile.youtube : '';
+      //profile.linkedin = !isEmpty(profile.company) ? profile.linkedin : '';
 
       // set component field state
       this.setState({
