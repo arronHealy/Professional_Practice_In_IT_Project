@@ -60,6 +60,19 @@ export const deleteAccount = () => dispatch => {
   }
 };
 
+// Add experience
+export const sellBook = (book, details) => dispatch => {
+  axios
+    .post('/api/profile/sell-book', book)
+    .then(res => details.push('/dashboard'))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 // profile loading
 export const setProfileLoading = () => {
   return {
