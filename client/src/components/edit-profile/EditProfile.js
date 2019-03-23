@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import classnames from "classnames";
 import { withRouter } from "react-router-dom";
 import { createProfile, getCurrentProfile } from "../../actions/profileActions";
+import isEmpty from '../../validation/is-empty';
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -31,7 +32,34 @@ class CreateProfile extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ errors: nextProps.errors });
+    if(nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+
+    if(nextProps.profile.profile) {
+      const profile = nextProps.profile.profile;
+
+      // make fields empty if not filled in
+      profile.website = !isEmpty(profile.company) ? profile.website : '';
+      profile.bio = !isEmpty(profile.company) ? profile.bio : '';
+      profile.facebook = !isEmpty(profile.company) ? profile.facebook : '';
+      profile.twitter = !isEmpty(profile.company) ? profile.twitter : '';
+      profile.youtube = !isEmpty(profile.company) ? profile.youtube : '';
+      profile.linkedin = !isEmpty(profile.company) ? profile.linkedin : '';
+
+      // set component field state
+      this.setState({
+        username: profile.username,
+        profileImage: profile.profileImage,
+        website: profile.website,
+        location: profile.location,
+        bio: profile.bio,
+        facebook: profile.facebook,
+        twitter: profile.twitter,
+        youtube: profile.youtube,
+        linkedin: profile.linkedin
+      });
+    }
   }
 
   onSubmit(e) {
