@@ -6,6 +6,8 @@ import Spinner from "../../utilities/Spinner";
 
 import { getProfiles } from "../../actions/profileActions";
 
+import ProfileListItem from "./ProfileListItem";
+
 class Profiles extends Component {
   componentDidMount() {
     this.props.getProfiles();
@@ -20,8 +22,11 @@ class Profiles extends Component {
       profileItems = <Spinner />;
     } else {
       if (profiles.length > 0) {
+        profileItems = profiles.map(profile => (
+          <ProfileListItem key={profile._id} profile={profile} />
+        ));
       } else {
-        profileItems = <h4>No profiles found...</h4>;
+        profileItems = <h4>No profiles found!</h4>;
       }
     }
 
