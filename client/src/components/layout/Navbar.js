@@ -66,7 +66,7 @@ class Navbar extends Component {
               <li className="nav-item">
                 <Link className="nav-link" to="/profiles">
                   {" "}
-                  Books
+                  Profiles
                 </Link>
               </li>
             </ul>
