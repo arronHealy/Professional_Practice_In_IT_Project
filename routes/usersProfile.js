@@ -8,6 +8,8 @@ const passport = require("passport");
 
 const validateProfileInput = require("../validator/profile");
 
+const validateBookInput = require("../validator/book");
+
 //get profile and user models
 const User = require("../models/User");
 
@@ -201,17 +203,16 @@ router.post(
         description: req.body.description
       };
 
-      // Add to edu array
-      profile.book.unshift(newBook);
+      // Add to book array
+      profile.books.unshift(newBook);
 
       profile.save().then(profile => res.json(profile));
     });
   }
 );
 
-// @route   DELETE api/profile/experience/:exp_id
-// @desc    Delete experience from profile
-// @access  Private
+// DELETE book from profile
+
 router.delete(
   '/list-book/:book_id',
   passport.authenticate('jwt', { session: false }),
@@ -219,36 +220,12 @@ router.delete(
     Profile.findOne({ user: req.user.id })
       .then(profile => {
         // Get remove index
-        const removeIndex = profile.experience
-          .map(item => item.id)
-          .indexOf(req.params.exp_id);
-
-        // Splice out of array
-        profile.experience.splice(removeIndex, 1);
-
-        // Save
-        profile.save().then(profile => res.json(profile));
-      })
-      .catch(err => res.status(404).json(err));
-  }
-);
-
-// @route   DELETE api/profile/education/:edu_id
-// @desc    Delete education from profile
-// @access  Private
-router.delete(
-  '/list-book/:book_id',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    Profile.findOne({ user: req.user.id })
-      .then(profile => {
-        // Get remove index
-        const removeIndex = profile.book
+        const removeIndex = profile.books
           .map(item => item.id)
           .indexOf(req.params.book_id);
 
         // Splice out of array
-        profile.book.splice(removeIndex, 1);
+        profile.books.splice(removeIndex, 1);
 
         // Save
         profile.save().then(profile => res.json(profile));
@@ -257,9 +234,8 @@ router.delete(
   }
 );
 
-// @route   DELETE api/profile
-// @desc    Delete user and profile
-// @access  Private
+// DELETE user and profile
+
 router.delete(
   '/',
   passport.authenticate('jwt', { session: false }),

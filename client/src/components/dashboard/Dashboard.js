@@ -6,7 +6,7 @@ import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import Spinner from "../../utilities/Spinner";
 import { Link } from "react-router-dom";
 import ProfileActions from "./ProfileActions";
-
+import Books from './Books';
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
@@ -33,6 +33,7 @@ class Dashboard extends Component {
           <div>
             <p className="lead text-muted">Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link></p>
             <ProfileActions />
+            <Books books={ profile.books } />
             <div style={{ marginBottom: '70px' }} />
             <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">Delete My Account</button>
           </div>

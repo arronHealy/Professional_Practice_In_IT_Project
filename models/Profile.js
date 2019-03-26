@@ -34,18 +34,18 @@ const ProfileSchema = new Schema({
         type: String,
         required: true
       },
-      price: {
-        type: Number,
-        required: true
+      genre: {
+        type: String,
       },
-      publishedDate: {
-        type: Date
-      },
-      description: {
+      condition: {
         type: String,
         required: true
       },
-      bookImage: {
+      price: {
+        type: String,
+        required: true
+      },
+      description: {
         type: String
       }
     }

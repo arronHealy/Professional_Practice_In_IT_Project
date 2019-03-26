@@ -61,10 +61,28 @@ export const deleteAccount = () => dispatch => {
 };
 
 // Add book
-export const listBook = (book, details) => dispatch => {
+export const listBook = (book, history) => dispatch => {
   axios
     .post('/api/profile/list-book', book)
-    .then(res => details.push('/dashboard'))
+    .then(res => history.push('/dashboard'))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Delete book
+export const deleteBook = id => dispatch => {
+  axios
+    .delete(`/api/profile/list-book/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

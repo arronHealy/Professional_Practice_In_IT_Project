@@ -9,7 +9,6 @@ class ListBook extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bookImage: "../../images/book.jpg",
             title: '',
             author: '',
             genre: '',
@@ -41,7 +40,7 @@ class ListBook extends Component {
         description: this.state.description
       };
   
-      this.props.listBook(book, this.props.details);
+      this.props.listBook(book, this.props.history);
   }
 
   onChange(e) {
@@ -58,14 +57,14 @@ class ListBook extends Component {
               <Link to="/dashboard" className="btn btn-light">
                 Back
               </Link>
-              <h1 className="display-4 text-center">Add Book</h1>
+              <h1 className="display-4 text-center">List Book</h1>
               <small className="d-block pb-3">* required fields</small>
               <form noValidate onSubmit={this.onSubmit}>
 
               <div className="form-group">
                 <input
                   type="text"
-                  className={classnames("form-control form-control-lg", {"is-invalid": errors.Title})}
+                  className={classnames("form-control form-control-lg", {"is-invalid": errors.title})}
                   placeholder="* Title"
                   name="title"
                   value={this.state.title}
@@ -77,13 +76,13 @@ class ListBook extends Component {
               <div className="form-group">
                 <input
                   type="text"
-                  className={classnames("form-control form-control-lg", {"is-invalid": errors.Author})}
+                  className={classnames("form-control form-control-lg", {"is-invalid": errors.author})}
                   placeholder="* Author"
                   name="author"
                   value={this.state.author}
                   onChange={this.onChange}
                 />
-                {errors.title && (<div className="invalid-feedback">{errors.author}</div>)}
+                {errors.author && (<div className="invalid-feedback">{errors.author}</div>)}
               </div>
 
               <div className="form-group">
@@ -99,25 +98,25 @@ class ListBook extends Component {
               <div className="form-group">
                 <input
                   type="text"
-                  className={classnames("form-control form-control-lg", {"is-invalid": errors.Condition})}
+                  className={classnames("form-control form-control-lg", {"is-invalid": errors.condition})}
                   placeholder="* Condition"
                   name="condition"
                   value={this.state.condition}
                   onChange={this.onChange}
                 />
-                {errors.title && (<div className="invalid-feedback">{errors.condition}</div>)}
+                {errors.condition && (<div className="invalid-feedback">{errors.condition}</div>)}
               </div>
 
               <div className="form-group">
                 <input
                   type="text"
-                  className={classnames("form-control form-control-lg", {"is-invalid": errors.Price})}
+                  className={classnames("form-control form-control-lg", {"is-invalid": errors.price})}
                   placeholder="* Price"
                   name="price"
                   value={this.state.price}
                   onChange={this.onChange}
                 />
-                {errors.title && (<div className="invalid-feedback">{errors.price}</div>)}
+                {errors.price && (<div className="invalid-feedback">{errors.price}</div>)}
               </div>
 
               <div className="form-group">
