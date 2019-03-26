@@ -60,10 +60,10 @@ export const deleteAccount = () => dispatch => {
   }
 };
 
-// Add experience
-export const sellBook = (book, details) => dispatch => {
+// Add book
+export const listBook = (book, details) => dispatch => {
   axios
-    .post('/api/profile/sell-book', book)
+    .post('/api/profile/list-book', book)
     .then(res => details.push('/dashboard'))
     .catch(err =>
       dispatch({

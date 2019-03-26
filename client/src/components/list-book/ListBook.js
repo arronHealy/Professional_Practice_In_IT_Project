@@ -3,9 +3,9 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import classnames from "classnames";
-import { sellBook } from "../../actions/profileActions";
+import { listBook } from "../../actions/profileActions";
 
-class SellBook extends Component {
+class ListBook extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -41,7 +41,7 @@ class SellBook extends Component {
         description: this.state.description
       };
   
-      this.props.sellBook(book, this.props.details);
+      this.props.listBook(book, this.props.details);
   }
 
   onChange(e) {
@@ -51,7 +51,7 @@ class SellBook extends Component {
   render() {
     const { errors } = this.state;
     return (
-        <div className="sell-book">
+        <div className="list-book">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -144,8 +144,8 @@ class SellBook extends Component {
   }
 }
 
-SellBook.propTypes ={
-    sellBook: PropTypes.func.isRequired,
+ListBook.propTypes ={
+    listBook: PropTypes.func.isRequired,
     profile: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
 };
@@ -155,4 +155,4 @@ const mapStateToProps = state => ({
     errors: state.errors
 });
 
-export default connect(mapStateToProps, { sellBook })(withRouter(SellBook));
+export default connect(mapStateToProps, { listBook })(withRouter(ListBook));

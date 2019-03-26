@@ -19,7 +19,7 @@ import CreateProfile from "./components/profile/CreateProfile";
 import "./App.css";
 import { clearCurrentProfile } from "./actions/profileActions";
 import EditProfile from "./components/edit-profile/EditProfile";
-import SellBook from "./components/sell-book/SellBook";
+import ListBook from "./components/list-book/ListBook";
 
 // check for token
 if (localStorage.jwtToken) {
@@ -72,8 +72,8 @@ class App extends Component {
               <Switch>
                 <PrivateRoute
                   exact
-                  path="/sell-book"
-                  component={SellBook}
+                  path="/list-book"
+                  component={ListBook}
                 />
               </Switch>
             </div>
