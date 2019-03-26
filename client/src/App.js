@@ -16,6 +16,7 @@ import Register from "./components/authentication/Register";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/profile/CreateProfile";
 import Profiles from "./components/profiles/Profiles";
+import Profile from "./components/profile/Profile";
 
 import "./App.css";
 import { clearCurrentProfile } from "./actions/profileActions";
@@ -52,6 +53,7 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/profiles" component={Profiles} />
+              <Route exact path="/profile/:username" component={Profile} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
