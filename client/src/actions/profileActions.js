@@ -1,5 +1,6 @@
 import axios from "axios";
 
+//import action types
 import {
   GET_PROFILE,
   PROFILE_LOADING,
