@@ -71,7 +71,7 @@ class Navbar extends Component {
               <li className="nav-item">
                 <Link className="nav-link" to="/profiles">
                   {" "}
-                  Books
+                  Book Dealer Profiles
                 </Link>
               </li>
             </ul>

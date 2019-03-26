@@ -36,7 +36,7 @@ class CreateProfile extends Component {
       this.setState({ errors: nextProps.errors });
     }
 
-    if(nextProps.profile.profile) {
+    if(nextProps.profile) {
       const profile = nextProps.profile.profile;
 
       // set component field state
@@ -87,10 +87,7 @@ class CreateProfile extends Component {
             <form noValidate onSubmit={this.onSubmit}>
               <div className="form-group">
                 <input
-                  type="text"
-                  className={classnames("form-control form-control-lg", {
-                    "is-invalid": errors.username
-                  })}
+                  type="text" className={classnames("form-control form-control-lg", {"is-invalid": errors.username})}
                   placeholder="Enter your Username"
                   name="username"
                   value={this.state.username}
