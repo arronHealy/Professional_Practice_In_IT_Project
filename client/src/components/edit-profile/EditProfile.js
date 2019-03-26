@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import classnames from "classnames";
 import { withRouter } from "react-router-dom";
 import { createProfile, getCurrentProfile } from "../../actions/profileActions";
-import isEmpty from '../../validation/is-empty';
+import isEmpty from "../../validation/is-empty";
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -12,7 +12,6 @@ class CreateProfile extends Component {
 
     this.state = {
       username: "",
-      profileImage: "../../images/noProfilePic.jpg",
       website: "",
       location: "",
       bio: "",
@@ -28,16 +27,39 @@ class CreateProfile extends Component {
   }
 
   componentDidMount() {
-      this.props.getCurrentProfile();
+    this.props.getCurrentProfile();
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.errors) {
+    if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
 
-    if(nextProps.profile) {
+    if (nextProps.profile) {
       const profile = nextProps.profile.profile;
+
+      profile.website = !isEmpty(profile.website) ? profile.website : "";
+      profile.location = !isEmpty(profile.location) ? profile.location : "";
+
+      profile.socialLinks = !isEmpty(profile.socialLinks)
+        ? profile.socialLinks
+        : {};
+
+      profile.twitter = !isEmpty(profile.socialLinks.twitter)
+        ? profile.socialLinks.twitter
+        : "";
+
+      profile.facebook = !isEmpty(profile.socialLinks.facebook)
+        ? profile.socialLinks.facebook
+        : "";
+
+      profile.youtube = !isEmpty(profile.socialLinks.youtube)
+        ? profile.socialLinks.youtube
+        : "";
+
+      profile.linkedin = !isEmpty(profile.socialLinks.linkedin)
+        ? profile.socialLinks.linkedin
+        : "";
 
       // set component field state
       this.setState({
@@ -87,7 +109,10 @@ class CreateProfile extends Component {
             <form noValidate onSubmit={this.onSubmit}>
               <div className="form-group">
                 <input
-                  type="text" className={classnames("form-control form-control-lg", {"is-invalid": errors.username})}
+                  type="text"
+                  className={classnames("form-control form-control-lg", {
+                    "is-invalid": errors.username
+                  })}
                   placeholder="Enter your Username"
                   name="username"
                   value={this.state.username}

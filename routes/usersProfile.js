@@ -130,22 +130,22 @@ router.post(
       profileFields.bio = req.body.bio;
     }
 
-    profileFields.social = {};
+    profileFields.socialLinks = {};
 
     if (req.body.youtube) {
-      profileFields.social.youtube = req.body.youtube;
+      profileFields.socialLinks.youtube = req.body.youtube;
     }
 
     if (req.body.facebook) {
-      profileFields.social.facebook = req.body.facebook;
+      profileFields.socialLinks.facebook = req.body.facebook;
     }
 
     if (req.body.twitter) {
-      profileFields.social.twitter = req.body.twitter;
+      profileFields.socialLinks.twitter = req.body.twitter;
     }
 
     if (req.body.linkedin) {
-      profileFields.social.linkedin = req.body.linkedin;
+      profileFields.socialLinks.linkedin = req.body.linkedin;
     }
 
     Profile.findOne({ user: req.user.id })
@@ -182,8 +182,8 @@ router.post(
 //  POST book to profile
 
 router.post(
-  '/list-book',
-  passport.authenticate('jwt', { session: false }),
+  "/list-book",
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateBookInput(req.body);
 
@@ -214,8 +214,8 @@ router.post(
 // DELETE book from profile
 
 router.delete(
-  '/list-book/:book_id',
-  passport.authenticate('jwt', { session: false }),
+  "/list-book/:book_id",
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id })
       .then(profile => {
@@ -237,8 +237,8 @@ router.delete(
 // DELETE user and profile
 
 router.delete(
-  '/',
-  passport.authenticate('jwt', { session: false }),
+  "/",
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOneAndRemove({ user: req.user.id }).then(() => {
       User.findOneAndRemove({ _id: req.user.id }).then(() =>
@@ -247,6 +247,5 @@ router.delete(
     });
   }
 );
-
 
 module.exports = router;
