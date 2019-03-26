@@ -8,6 +8,8 @@ const passport = require("passport");
 
 const validateProfileInput = require("../validator/profile");
 
+const validateBookInput = require("../validator/book");
+
 //get profile and user models
 const User = require("../models/User");
 
@@ -176,5 +178,75 @@ router.post(
       });
   }
 );
+
+//  POST book to profile
+
+router.post(
+  '/list-book',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateBookInput(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      // Return any errors with 400 status
+      return res.status(400).json(errors);
+    }
+
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      const newBook = {
+        title: req.body.title,
+        author: req.body.author,
+        genre: req.body.genre,
+        condition: req.body.condition,
+        price: req.body.price,
+        description: req.body.description
+      };
+
+      // Add to book array
+      profile.books.unshift(newBook);
+
+      profile.save().then(profile => res.json(profile));
+    });
+  }
+);
+
+// DELETE book from profile
+
+router.delete(
+  '/list-book/:book_id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        // Get remove index
+        const removeIndex = profile.books
+          .map(item => item.id)
+          .indexOf(req.params.book_id);
+
+        // Splice out of array
+        profile.books.splice(removeIndex, 1);
+
+        // Save
+        profile.save().then(profile => res.json(profile));
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
+// DELETE user and profile
+
+router.delete(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Profile.findOneAndRemove({ user: req.user.id }).then(() => {
+      User.findOneAndRemove({ _id: req.user.id }).then(() =>
+        res.json({ success: true })
+      );
+    });
+  }
+);
+
 
 module.exports = router;
