@@ -27,14 +27,15 @@ class Profile extends Component {
         <div>
           <div className="row">
             <div className="col-md-6">
-              <Link className="btn btn-light" to="/profiles">
+              <Link className="btn btn-light mb-3 float-left" to="/profiles">
                 Back To Profiles
               </Link>
             </div>
+            <br />
             <div className="col-md-6" />
           </div>
           <ProfileHeader profile={profile} />
-          <ProfileAbout />
+          <ProfileAbout profile={profile} />
         </div>
       );
     }

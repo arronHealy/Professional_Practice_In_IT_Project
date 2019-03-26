@@ -10,7 +10,7 @@ class ProfileHeader extends Component {
         <div className="col-12">
           <div className="card card-body bg-success text-white mb-3">
             <div className="row">
-              <div className="col-4 col-md-3 m-auto">
+              <div className="col-2 col-md-3 m-auto">
                 <img
                   src={
                     isEmpty(profile.profileImage)
@@ -29,7 +29,7 @@ class ProfileHeader extends Component {
               {isEmpty(profile.location) ? (
                 "No Location listed"
               ) : (
-                <p>{profile.location}</p>
+                <p>Location: {profile.location}</p>
               )}
 
               <p>
