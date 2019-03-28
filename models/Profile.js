@@ -35,7 +35,7 @@ const ProfileSchema = new Schema({
         required: true
       },
       genre: {
-        type: String,
+        type: String
       },
       condition: {
         type: String,
@@ -46,6 +46,9 @@ const ProfileSchema = new Schema({
         required: true
       },
       description: {
+        type: String
+      },
+      bookImage: {
         type: String
       }
     }

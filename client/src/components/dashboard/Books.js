@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { deleteBook } from '../../actions/profileActions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { deleteBook } from "../../actions/profileActions";
+import isEmpty from "../../validation/is-empty";
 
 class Books extends Component {
   onDeleteClick(id) {
@@ -11,6 +12,18 @@ class Books extends Component {
   render() {
     const books = this.props.books.map(book => (
       <tr key={book._id}>
+        <td>
+          <img
+            src={
+              isEmpty(book.bookImage)
+                ? require("../../images/noBookImage.jpg")
+                : book.bookImage
+            }
+            alt=""
+            height="100"
+            width="5"
+          />
+        </td>
         <td>{book.title}</td>
         <td>{book.author}</td>
         <td>{book.genre}</td>
@@ -33,6 +46,7 @@ class Books extends Component {
         <table className="table">
           <thead>
             <tr>
+              <th>Book Image</th>
               <th>Title</th>
               <th>Author</th>
               <th>Genre</th>
@@ -53,4 +67,7 @@ Books.propTypes = {
   deleteBook: PropTypes.func.isRequired
 };
 
-export default connect(null, { deleteBook })(Books);
+export default connect(
+  null,
+  { deleteBook }
+)(Books);
