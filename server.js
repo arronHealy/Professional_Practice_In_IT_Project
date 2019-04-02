@@ -8,6 +8,7 @@ const keys = require("./configuration/SecurityKeys");
 
 const users = require("./routes/users");
 const profile = require("./routes/usersProfile");
+const posts = require("./routes/usersPosts");
 
 const passport = require("passport");
 
@@ -39,5 +40,6 @@ require("./configuration/passport")(passport);
 //use backend routes
 app.use("/api/users", users);
 app.use("/api/profile", profile);
+app.use("/api/posts", posts);
 
 app.listen(port, () => console.log("app running on port " + port));
