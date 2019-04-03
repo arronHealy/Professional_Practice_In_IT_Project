@@ -26,7 +26,13 @@ router.get("/", (req, res) => {
 //get post by id
 router.get("/:id", (req, res) => {
   Post.findById(req.params.id)
-    .then(post => res.json(post))
+    .then(post => {
+      if (post) {
+        res.json(post);
+      } else {
+        res.status(404).json({ nopost: "No post found with that id" });
+      }
+    })
     .catch(err =>
       res.status(404).json({ nopostfound: "No post found with that id" })
     );
