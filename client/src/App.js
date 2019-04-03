@@ -23,6 +23,8 @@ import { clearCurrentProfile } from "./actions/profileActions";
 import EditProfile from "./components/edit-profile/EditProfile";
 import ListBook from "./components/list-book/ListBook";
 
+import Posts from "./components/posts/Posts";
+
 // check for token
 if (localStorage.jwtToken) {
   // set auth token header off
@@ -74,11 +76,10 @@ class App extends Component {
                 />
               </Switch>
               <Switch>
-                <PrivateRoute
-                  exact
-                  path="/list-book"
-                  component={ListBook}
-                />
+                <PrivateRoute exact path="/list-book" component={ListBook} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/posts" component={Posts} />
               </Switch>
             </div>
             <Footer />
