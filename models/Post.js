@@ -14,6 +14,9 @@ const PostSchema = new Schema({
   name: {
     type: String
   },
+  postImage: {
+    type: String
+  },
   comments: [
     {
       user: {

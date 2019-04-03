@@ -28,7 +28,7 @@ class Books extends Component {
         <td>{book.author}</td>
         <td>{book.genre}</td>
         <td>{book.condition}</td>
-        <td>{book.price}</td>
+        <td>&euro;{book.price}</td>
         <td>{book.description}</td>
         <td>
           <button

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import classnames from "classnames";
 import { connect } from "react-redux";
 import { addPost } from "../../actions/postActions";
 
@@ -41,6 +42,8 @@ class PostForm extends Component {
   }
 
   render() {
+    const { errors } = this.state;
+
     return (
       <div className="post-form mb-3">
         <div className="card card-info">
@@ -61,6 +64,9 @@ class PostForm extends Component {
                   value={this.state.post}
                   onChange={this.onChange}
                 />
+                {errors.post && (
+                  <div className="invalid-feedback">{errors.post}</div>
+                )}
               </div>
               <button type="submit" className="btn btn-dark">
                 Submit
