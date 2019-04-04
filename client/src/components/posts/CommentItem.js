@@ -10,12 +10,14 @@ class CommentItem extends Component {
   }
 
   render() {
+    //pull comment, postid and auth state from passed in props
     const { comment, postId, auth } = this.props;
 
     return (
       <div className="card card-body mb-3">
         <div className="row">
           <div className="col-md-2">
+            {/*check if post has an image*/}
             <img
               src={
                 isEmpty(comment.postImage)
