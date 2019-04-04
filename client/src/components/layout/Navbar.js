@@ -80,10 +80,11 @@ class Navbar extends Component {
                 </Link>
               </li>
             </ul>
+
             {isAuthenticated ? authLinks : guestLinks}
             <form className="form-inline">
               <input
-                className="form-control mr-sm-2"
+                className="form-control mr-sm-2 ml-3"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"

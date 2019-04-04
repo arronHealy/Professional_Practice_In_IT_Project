@@ -96,7 +96,7 @@ router.post(
         const newComment = {
           user: req.user.id,
           post: req.body.post,
-          name: req.body.name
+          name: req.user.name
         };
 
         post.comments.unshift(newComment);
