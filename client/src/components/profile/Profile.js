@@ -7,7 +7,9 @@ import ProfileHeader from "./ProfileHeader";
 import ProfileAbout from "./ProfileAbout";
 
 import { getProfileByUsername } from "../../actions/profileActions";
+
 import ProfileBooks from "./ProfileBooks";
+import ProfilePosts from "./ProfilePosts";
 
 class Profile extends Component {
   componentDidMount() {
@@ -38,6 +40,7 @@ class Profile extends Component {
           <ProfileHeader profile={profile} />
           <ProfileAbout profile={profile} />
           <ProfileBooks profile={profile} />
+          <ProfilePosts profile={profile} />
         </div>
       );
     }
