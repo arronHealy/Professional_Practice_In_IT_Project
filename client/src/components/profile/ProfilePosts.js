@@ -14,14 +14,16 @@ class ProfilePosts extends Component {
   render() {
     const { profile } = this.props.profile;
 
-    const { username } = this.props;
+    const { username, profileId } = this.props;
 
     const firstName = profile.user.name.trim().split(" ")[0];
 
     let reviews;
 
     if (profile.reviews.length > 0) {
-      reviews = <ProfilePostFeed posts={profile.reviews} />;
+      reviews = (
+        <ProfilePostFeed posts={profile.reviews} profileId={profileId} />
+      );
     } else {
       reviews = <h4>{firstName} has no Reviews yet</h4>;
     }

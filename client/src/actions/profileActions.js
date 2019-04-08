@@ -10,7 +10,7 @@ import {
   SET_CURRENT_USER,
   CLEAR_ERRORS,
   ADD_PROFILE_POST,
-  GET_PROFILE_POSTS,
+  DELETE_PROFILE_POST,
   POST_LOADING
 } from "./types";
 
@@ -171,6 +171,25 @@ export const addProfilePost = (username, post) => dispatch => {
         payload: res.data
       })
     )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// delete a post
+
+export const deleteProfilePost = (postId, id) => dispatch => {
+  axios
+    .delete("/api/profile/posts/" + postId + "/" + id)
+    .then(res => {
+      dispatch({
+        type: DELETE_PROFILE_POST,
+        payload: res.data
+      });
+    })
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

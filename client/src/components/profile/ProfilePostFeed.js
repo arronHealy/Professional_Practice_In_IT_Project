@@ -4,9 +4,11 @@ import ProfilePostItem from "./ProfilePostItem";
 
 class ProfilePostFeed extends Component {
   render() {
-    const { posts } = this.props;
+    const { posts, profileId } = this.props;
 
-    return posts.map(post => <ProfilePostItem key={post._id} post={post} />);
+    return posts.map(post => (
+      <ProfilePostItem key={post._id} post={post} profileId={profileId} />
+    ));
   }
 }
 

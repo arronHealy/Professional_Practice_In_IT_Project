@@ -208,6 +208,29 @@ router.post(
   }
 );
 
+//delete post by id
+
+router.delete(
+  "/posts/:profile_id/:post_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findById(req.params.profile_id)
+      .then(profile => {
+        // Get remove index
+        const removeIndex = profile.reviews
+          .map(item => item.id)
+          .indexOf(req.params.post_id);
+
+        // Splice out of array
+        profile.reviews.splice(removeIndex, 1);
+
+        // Save
+        profile.save().then(profile => res.json(profile.reviews));
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
 //  POST book to profile
 
 router.post(

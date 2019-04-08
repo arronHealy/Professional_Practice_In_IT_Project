@@ -4,13 +4,14 @@ import { connect } from "react-redux";
 import classnames from "classnames";
 import { Link } from "react-router-dom";
 import isEmpty from "../../validation/is-empty";
-
-//import { deletePost } from "../../actions/postActions";
+import { deleteProfilePost } from "../../actions/profileActions";
 
 class ProfilePostItem extends Component {
   onDeleteClick(id) {
     //console.log(id);
-    //this.props.deletePost(id);
+    const { profileId } = this.props;
+
+    this.props.deleteProfilePost(profileId, id);
   }
 
   render() {
@@ -63,8 +64,8 @@ ProfilePostItem.defaultProps = {
 };
 
 ProfilePostItem.propTypes = {
-  //deletePost: PropTypes.func.isRequired,
-  //post: PropTypes.object.isRequired,
+  deleteProfilePost: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
 
@@ -74,5 +75,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {}
+  { deleteProfilePost }
 )(ProfilePostItem);

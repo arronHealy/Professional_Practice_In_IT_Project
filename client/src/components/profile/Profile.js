@@ -40,7 +40,7 @@ class Profile extends Component {
           <ProfileHeader profile={profile} />
           <ProfileAbout profile={profile} />
           <ProfileBooks profile={profile} />
-          <ProfilePosts username={profile.username} />
+          <ProfilePosts username={profile.username} profileId={profile._id} />
         </div>
       );
     }
