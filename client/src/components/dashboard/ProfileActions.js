@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ProfileActions = profile => {
-  //const { profile } = this.props;
+  const username = profile.username;
 
   return (
     <div className="btn-group mb-4" role="group">
-      <Link to={`/profile/${profile.username}`} className="btn btn-light">
+      <Link to={`/profile/${username}`} className="btn btn-light">
         <i className="fas fa-user-circle text-info mr-1" /> My Profile
       </Link>
       <Link to="/edit-profile" className="btn btn-light">

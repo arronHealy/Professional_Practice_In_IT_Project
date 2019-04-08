@@ -13,7 +13,7 @@ class ProfileAbout extends Component {
           <div className="card card-body bg-light mb-3">
             <h3 className="text-center text-success">{firstName}'s Details</h3>
 
-            <p className="lead">
+            <div className="lead">
               {isEmpty(profile.location) ? (
                 "No Location listed"
               ) : (
@@ -22,12 +22,12 @@ class ProfileAbout extends Component {
                   <span>{profile.location}</span>
                 </div>
               )}
-            </p>
+            </div>
 
             <br />
 
             <h3 className="text-success">Social Links:</h3>
-            <p className="mt-2">
+            <div className="mt-2">
               {isEmpty(profile.website) ? null : (
                 <a
                   className="text-dark p-2"
@@ -86,11 +86,11 @@ class ProfileAbout extends Component {
                   <i className="fab fa-youtube fa-2x" />
                 </a>
               )}
-            </p>
+            </div>
 
             <br />
 
-            <p className="lead">
+            <div className="lead">
               {isEmpty(profile.bio) ? (
                 <span>{firstName} does not have a Bio</span>
               ) : (
@@ -99,7 +99,7 @@ class ProfileAbout extends Component {
                   <span>{profile.bio}</span>
                 </div>
               )}
-            </p>
+            </div>
           </div>
         </div>
       </div>
