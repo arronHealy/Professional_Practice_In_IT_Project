@@ -7,7 +7,11 @@ import {
   CLEAR_CURRENT_PROFILE,
   GET_ERRORS,
   GET_PROFILES,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
+  CLEAR_ERRORS,
+  ADD_PROFILE_POST,
+  GET_PROFILE_POSTS,
+  POST_LOADING
 } from "./types";
 
 //create profile for user
@@ -135,6 +139,46 @@ export const deleteBook = id => dispatch => {
     );
 };
 
+/*
+//get profile posts
+export const getProfilePosts = username => dispatch => {
+  dispatch(setPostLoading());
+  axios
+    .get("/api/profile/posts/" + username)
+    .then(res => {
+      dispatch({
+        type: GET_PROFILE_POSTS,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_PROFILE_POSTS,
+        payload: null
+      })
+    );
+};
+*/
+
+//add a post
+export const addProfilePost = (username, post) => dispatch => {
+  dispatch(clearErrors());
+  axios
+    .post("/api/profile/posts/" + username, post)
+    .then(res =>
+      dispatch({
+        type: ADD_PROFILE_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 // profile loading
 export const setProfileLoading = () => {
   return {
@@ -146,5 +190,19 @@ export const setProfileLoading = () => {
 export const clearCurrentProfile = () => {
   return {
     type: CLEAR_CURRENT_PROFILE
+  };
+};
+
+//clear errors
+
+export const clearErrors = () => {
+  return {
+    type: CLEAR_ERRORS
+  };
+};
+
+export const setPostLoading = () => {
+  return {
+    type: POST_LOADING
   };
 };

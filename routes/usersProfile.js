@@ -10,6 +10,8 @@ const validateProfileInput = require("../validator/profile");
 
 const validateBookInput = require("../validator/book");
 
+const validatePostInput = require("../validator/post");
+
 //get profile and user models
 const User = require("../models/User");
 
@@ -176,6 +178,33 @@ router.post(
           );
         }
       });
+  }
+);
+
+//create a post on users profile
+router.post(
+  "/posts/:username",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validatePostInput(req.body);
+
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
+    Profile.findOne({ username: req.params.username })
+      .then(profile => {
+        const newPost = {
+          user: req.user.id,
+          post: req.body.post,
+          name: req.user.name
+        };
+
+        profile.reviews.unshift(newPost);
+
+        profile.save().then(profile => res.json(profile.reviews));
+      })
+      .catch(err => res.status(404).json(err));
   }
 );
 

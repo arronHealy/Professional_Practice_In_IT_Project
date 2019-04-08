@@ -2,7 +2,8 @@ import {
   GET_PROFILE,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
-  GET_PROFILES
+  GET_PROFILES,
+  ADD_PROFILE_POST
 } from "../actions/types";
 
 const initialState = {
@@ -34,6 +35,14 @@ export default function(state = initialState, action) {
         ...state,
         profiles: action.payload,
         loading: false
+      };
+    case ADD_PROFILE_POST:
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          reviews: action.payload
+        }
       };
     default:
       return state;

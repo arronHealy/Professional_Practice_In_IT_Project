@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import { connect } from "react-redux";
-//import { addPost } from "../../actions/postActions";
+import { addProfilePost } from "../../actions/profileActions";
 
 class ProfilePostForm extends Component {
   constructor(props) {
@@ -28,12 +28,14 @@ class ProfilePostForm extends Component {
     //console.log("submit");
     const { user } = this.props.auth;
 
+    const { username } = this.props;
+
     const newPost = {
       post: this.state.post,
       name: user.name
     };
 
-    //this.props.addPost(newPost);
+    this.props.addProfilePost(username, newPost);
     this.setState({ post: "" });
   }
 
@@ -80,7 +82,7 @@ class ProfilePostForm extends Component {
 }
 
 ProfilePostForm.propTypes = {
-  //addPost: PropTypes.func.isRequired,
+  addProfilePost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -92,5 +94,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {}
+  { addProfilePost }
 )(ProfilePostForm);
