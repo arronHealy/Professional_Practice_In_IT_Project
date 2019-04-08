@@ -11,12 +11,93 @@ class ProfileAbout extends Component {
       <div className="row">
         <div className="col-md-12">
           <div className="card card-body bg-light mb-3">
-            <h3 className="text-center text-success">{firstName}'s Bio</h3>
+            <h3 className="text-center text-success">{firstName}'s Details</h3>
+
+            <p className="lead">
+              {isEmpty(profile.location) ? (
+                "No Location listed"
+              ) : (
+                <div>
+                  <h3 className="text-success">Location: </h3>
+                  <span>{profile.location}</span>
+                </div>
+              )}
+            </p>
+
+            <br />
+
+            <h3 className="text-success">Social Links:</h3>
+            <p className="mt-2">
+              {isEmpty(profile.website) ? null : (
+                <a
+                  className="text-dark p-2"
+                  href={profile.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="fas fa-globe fa-2x" />
+                </a>
+              )}
+              {isEmpty(
+                profile.socialLinks && profile.socialLinks.twitter
+              ) ? null : (
+                <a
+                  className="text-dark p-2"
+                  href={profile.socialLinks.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="fab fa-twitter fa-2x" />
+                </a>
+              )}
+              {isEmpty(
+                profile.socialLinks && profile.socialLinks.facebook
+              ) ? null : (
+                <a
+                  className="text-dark p-2"
+                  href={profile.socialLinks.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="fab fa-facebook fa-2x" />
+                </a>
+              )}
+              {isEmpty(
+                profile.socialLinks && profile.socialLinks.linkedin
+              ) ? null : (
+                <a
+                  className="text-dark p-2"
+                  href={profile.socialLinks.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="fab fa-linkedin fa-2x" />
+                </a>
+              )}
+              {isEmpty(
+                profile.socialLinks && profile.socialLinks.youtube
+              ) ? null : (
+                <a
+                  className="text-dark p-2"
+                  href={profile.socialLinks.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="fab fa-youtube fa-2x" />
+                </a>
+              )}
+            </p>
+
+            <br />
+
             <p className="lead">
               {isEmpty(profile.bio) ? (
                 <span>{firstName} does not have a Bio</span>
               ) : (
-                <span>{profile.bio}</span>
+                <div>
+                  <h3 className="text-success">Bio:</h3>
+                  <span>{profile.bio}</span>
+                </div>
               )}
             </p>
           </div>

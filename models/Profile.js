@@ -53,6 +53,50 @@ const ProfileSchema = new Schema({
       }
     }
   ],
+  reviews: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "users"
+      },
+      post: {
+        type: String,
+        required: true
+      },
+      name: {
+        type: String
+      },
+      postImage: {
+        type: String
+      },
+      comments: [
+        {
+          user: {
+            type: Schema.Types.ObjectId,
+            ref: "users"
+          },
+          post: {
+            type: String,
+            required: true
+          },
+          postImage: {
+            type: String
+          },
+          name: {
+            type: String
+          },
+          date: {
+            type: Date,
+            default: Date.now
+          }
+        }
+      ],
+      date: {
+        type: Date,
+        default: Date.now
+      }
+    }
+  ],
   socialLinks: {
     youtube: {
       type: String

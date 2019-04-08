@@ -35,7 +35,7 @@ class Dashboard extends Component {
               Welcome{" "}
               <Link to={`/profile/${profile.username}`}>{user.name}</Link>
             </p>
-            <ProfileActions />
+            <ProfileActions profile={profile} />
             <Books books={profile.books} />
             <div style={{ marginBottom: "70px" }} />
             <button
