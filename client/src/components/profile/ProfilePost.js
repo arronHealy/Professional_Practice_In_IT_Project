@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { getProfilePost } from "../../actions/profileActions";
 
 import PostItem from "./PostItem";
+import CommentsForm from "./CommentsForm";
 
 class ProfilePost extends Component {
   componentDidMount() {
@@ -15,7 +16,7 @@ class ProfilePost extends Component {
   }
 
   render() {
-    const { post, loading } = this.props.profile;
+    const { post, loading, profile } = this.props.profile;
 
     let content;
 
@@ -24,11 +25,10 @@ class ProfilePost extends Component {
     } else {
       content = (
         <div>
-          <PostItem post={post} showActions={false} />
-          {/*}
+          <PostItem profileId={profile._id} post={post} showActions={false} />
           <CommentsForm postId={post._id} />
-          <CommentsFeed postId={post._id} comments={post.comments} />
-        */}
+          {/*<CommentsFeed postId={post._id} comments={post.comments} />
+           */}
         </div>
       );
     }
@@ -37,9 +37,14 @@ class ProfilePost extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <Link to={"/profile/"} className="btn btn-dark mb-3">
+            {/*}
+            <Link
+              to={"/profile/" + profile.username}
+              className="btn btn-dark mb-3"
+            >
               Back to Profile
             </Link>
+    */}
             {content}
           </div>
         </div>

@@ -12,6 +12,7 @@ import {
   ADD_PROFILE_POST,
   DELETE_PROFILE_POST,
   GET_PROFILE_POST,
+  ADD_PROFILE_COMMENT,
   POST_LOADING
 } from "./types";
 
@@ -210,6 +211,25 @@ export const deleteProfilePost = (postId, id) => dispatch => {
         payload: res.data
       });
     })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// add a comment to profile post
+
+export const addProfileComment = (profileId, postId, post) => dispatch => {
+  axios
+    .post("/api/profile/profile-comment/" + profileId + "/" + postId, post)
+    .then(res =>
+      dispatch({
+        type: ADD_PROFILE_COMMENT,
+        payload: res.data
+      })
+    )
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

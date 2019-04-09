@@ -14,7 +14,7 @@ class PostItem extends Component {
   }
 
   render() {
-    const { post, auth, showActions } = this.props;
+    const { post, auth, showActions, profileId } = this.props;
 
     return (
       <div className="card card-body mb-3">
@@ -37,7 +37,10 @@ class PostItem extends Component {
             <p className="lead">{post.post}</p>
             {showActions ? (
               <span>
-                <Link to={`/post/${post._id}`} className="btn btn-success mr-1">
+                <Link
+                  to={"/profile-post/" + profileId + "/" + post._id}
+                  className="btn btn-success mr-1"
+                >
                   Comments
                 </Link>
                 {post.user === auth.user.id ? (
