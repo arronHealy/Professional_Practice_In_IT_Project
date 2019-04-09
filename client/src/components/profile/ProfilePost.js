@@ -7,6 +7,7 @@ import { getProfilePost } from "../../actions/profileActions";
 
 import PostItem from "./PostItem";
 import CommentsForm from "./CommentsForm";
+import CommentsFeed from "./CommentsFeed";
 
 class ProfilePost extends Component {
   componentDidMount() {
@@ -26,9 +27,8 @@ class ProfilePost extends Component {
       content = (
         <div>
           <PostItem profileId={profile._id} post={post} showActions={false} />
-          <CommentsForm postId={post._id} />
-          {/*<CommentsFeed postId={post._id} comments={post.comments} />
-           */}
+          <CommentsForm profileId={profile._id} postId={post._id} />
+          <CommentsFeed postId={post._id} comments={post.comments} />
         </div>
       );
     }
@@ -36,17 +36,7 @@ class ProfilePost extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-md-12">
-            {/*}
-            <Link
-              to={"/profile/" + profile.username}
-              className="btn btn-dark mb-3"
-            >
-              Back to Profile
-            </Link>
-    */}
-            {content}
-          </div>
+          <div className="col-md-12">{content}</div>
         </div>
       </div>
     );

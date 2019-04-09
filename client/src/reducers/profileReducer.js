@@ -65,14 +65,9 @@ export default function(state = initialState, action) {
     case ADD_PROFILE_COMMENT:
       return {
         ...state,
-        profile: {
-          ...state.profile,
-          reviews: [
-            {
-              ...state.profile.reviews,
-              comments: action.payload
-            }
-          ]
+        post: {
+          ...state.post,
+          comments: action.payload
         }
       };
     default:
