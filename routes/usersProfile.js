@@ -231,6 +231,25 @@ router.delete(
   }
 );
 
+//get post by id
+router.get("/profile-post/:profile_id/:post_id", (req, res) => {
+  Profile.findById(req.params.profile_id)
+    .then(profile => {
+      if (profile) {
+        const index = profile.reviews
+          .map(item => item.id)
+          .indexOf(req.params.post_id);
+
+        res.json(profile.reviews[index]);
+      } else {
+        res.status(404).json({ nopost: "No profile found with that id" });
+      }
+    })
+    .catch(err =>
+      res.status(404).json({ nopostfound: "No post found with that id" })
+    );
+});
+
 //  POST book to profile
 
 router.post(

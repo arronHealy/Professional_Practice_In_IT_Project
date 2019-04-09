@@ -11,6 +11,7 @@ import {
   CLEAR_ERRORS,
   ADD_PROFILE_POST,
   DELETE_PROFILE_POST,
+  GET_PROFILE_POST,
   POST_LOADING
 } from "./types";
 
@@ -159,6 +160,25 @@ export const getProfilePosts = username => dispatch => {
     );
 };
 */
+
+//get post by id
+export const getProfilePost = (profileId, id) => dispatch => {
+  dispatch(setPostLoading());
+  axios
+    .get("/api/profile/profile-post/" + profileId + "/" + id)
+    .then(res => {
+      dispatch({
+        type: GET_PROFILE_POST,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_PROFILE_POST,
+        payload: null
+      })
+    );
+};
 
 //add a post
 export const addProfilePost = (username, post) => dispatch => {

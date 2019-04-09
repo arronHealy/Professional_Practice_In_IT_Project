@@ -27,6 +27,8 @@ import Posts from "./components/posts/Posts";
 
 import Post from "./components/posts/Post";
 
+import ProfilePost from "./components/profile/ProfilePost";
+
 // check for token
 if (localStorage.jwtToken) {
   // set auth token header off
@@ -85,6 +87,13 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/post/:id" component={Post} />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/profile-post/:profileId/:id"
+                  component={ProfilePost}
+                />
               </Switch>
             </div>
             <Footer />

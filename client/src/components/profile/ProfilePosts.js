@@ -6,11 +6,6 @@ import ProfilePostForm from "./ProfilePostForm";
 import ProfilePostFeed from "./ProfilePostFeed";
 
 class ProfilePosts extends Component {
-  componentDidMount() {
-    //const { username } = this.props;
-    //this.props.getProfilePosts(username);
-  }
-
   render() {
     const { profile } = this.props.profile;
 
@@ -39,7 +34,6 @@ class ProfilePosts extends Component {
 }
 
 ProfilePosts.propTypes = {
-  //getProfilePosts: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 

@@ -4,12 +4,14 @@ import {
   CLEAR_CURRENT_PROFILE,
   GET_PROFILES,
   ADD_PROFILE_POST,
-  DELETE_PROFILE_POST
+  DELETE_PROFILE_POST,
+  GET_PROFILE_POST
 } from "../actions/types";
 
 const initialState = {
   profile: null,
   profiles: null,
+  post: {},
   loading: false
 };
 
@@ -52,6 +54,12 @@ export default function(state = initialState, action) {
           ...state.profile,
           reviews: action.payload
         }
+      };
+    case GET_PROFILE_POST:
+      return {
+        ...state,
+        post: action.payload,
+        loading: false
       };
     default:
       return state;
