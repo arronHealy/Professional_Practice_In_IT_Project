@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../../utilities/Spinner";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { getProfilePost } from "../../actions/profileActions";
 
 import PostItem from "./PostItem";
@@ -12,6 +12,11 @@ import CommentsFeed from "./CommentsFeed";
 class ProfilePost extends Component {
   componentDidMount() {
     const { profile } = this.props.profile;
+
+    if (profile === null) {
+      this.props.history.go(-1);
+      return;
+    }
 
     this.props.getProfilePost(profile._id, this.props.match.params.id);
   }
@@ -28,7 +33,11 @@ class ProfilePost extends Component {
         <div>
           <PostItem profileId={profile._id} post={post} showActions={false} />
           <CommentsForm profileId={profile._id} postId={post._id} />
-          <CommentsFeed postId={post._id} comments={post.comments} />
+          <CommentsFeed
+            profileId={profile._id}
+            postId={post._id}
+            comments={post.comments}
+          />
         </div>
       );
     }
@@ -57,4 +66,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getProfilePost }
-)(ProfilePost);
+)(withRouter(ProfilePost));

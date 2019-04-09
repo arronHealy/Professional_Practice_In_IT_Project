@@ -252,7 +252,6 @@ router.get("/profile-post/:profile_id/:post_id", (req, res) => {
 
 // add comment to profile post
 
-//create a post on users profile
 router.post(
   "/profile-comment/:profile_id/:post_id",
   passport.authenticate("jwt", { session: false }),
@@ -284,6 +283,35 @@ router.post(
         } else {
           res.status(404).json({ nopost: "No profile found with that id" });
         }
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
+//delete profile posts comment by id
+
+router.delete(
+  "/profile-comment/:profile_id/:post_id/:comment_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findById(req.params.profile_id)
+      .then(profile => {
+        // Get remove index
+        const reviewIndex = profile.reviews
+          .map(item => item.id)
+          .indexOf(req.params.post_id);
+
+        const commentIndex = profile.reviews[reviewIndex].comments
+          .map(item => item.id)
+          .indexOf(req.params.comment_id);
+
+        // Splice out of array
+        profile.reviews[reviewIndex].comments.splice(commentIndex, 1);
+
+        // Save
+        profile
+          .save()
+          .then(profile => res.json(profile.reviews[reviewIndex].comments));
       })
       .catch(err => res.status(404).json(err));
   }

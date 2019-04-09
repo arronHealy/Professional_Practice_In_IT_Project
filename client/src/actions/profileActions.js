@@ -13,7 +13,8 @@ import {
   DELETE_PROFILE_POST,
   GET_PROFILE_POST,
   ADD_PROFILE_COMMENT,
-  POST_LOADING
+  POST_LOADING,
+  DELETE_PROFILE_COMMENT
 } from "./types";
 
 //create profile for user
@@ -141,27 +142,6 @@ export const deleteBook = id => dispatch => {
     );
 };
 
-/*
-//get profile posts
-export const getProfilePosts = username => dispatch => {
-  dispatch(setPostLoading());
-  axios
-    .get("/api/profile/posts/" + username)
-    .then(res => {
-      dispatch({
-        type: GET_PROFILE_POSTS,
-        payload: res.data
-      });
-    })
-    .catch(err =>
-      dispatch({
-        type: GET_PROFILE_POSTS,
-        payload: null
-      })
-    );
-};
-*/
-
 //get post by id
 export const getProfilePost = (profileId, id) => dispatch => {
   dispatch(setPostLoading());
@@ -230,6 +210,27 @@ export const addProfileComment = (profileId, postId, post) => dispatch => {
         payload: res.data
       })
     )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// delete a profiles comment
+
+export const deleteProfileComment = (profileId, postId, id) => dispatch => {
+  axios
+    .delete(
+      "/api/profile/profile-comment/" + profileId + "/" + postId + "/" + id
+    )
+    .then(res => {
+      dispatch({
+        type: DELETE_PROFILE_COMMENT,
+        payload: res.data
+      });
+    })
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

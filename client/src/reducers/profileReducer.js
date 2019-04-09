@@ -6,7 +6,8 @@ import {
   ADD_PROFILE_POST,
   DELETE_PROFILE_POST,
   GET_PROFILE_POST,
-  ADD_PROFILE_COMMENT
+  ADD_PROFILE_COMMENT,
+  DELETE_PROFILE_COMMENT
 } from "../actions/types";
 
 const initialState = {
@@ -63,6 +64,14 @@ export default function(state = initialState, action) {
         loading: false
       };
     case ADD_PROFILE_COMMENT:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          comments: action.payload
+        }
+      };
+    case DELETE_PROFILE_COMMENT:
       return {
         ...state,
         post: {

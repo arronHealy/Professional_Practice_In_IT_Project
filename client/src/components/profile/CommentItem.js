@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-//import { deleteComment } from "../../actions/postActions";
+import { deleteProfileComment } from "../../actions/profileActions";
 import isEmpty from "../../validation/is-empty";
 
 class CommentItem extends Component {
-  onDeleteClick(postId, commentId) {
-    //this.props.deleteComment(postId, commentId);
+  onDeleteClick(profileId, postId, commentId) {
+    this.props.deleteProfileComment(profileId, postId, commentId);
   }
 
   render() {
     //pull comment, postid and auth state from passed in props
-    const { comment, postId, auth } = this.props;
+    const { comment, postId, auth, profileId } = this.props;
 
     return (
       <div className="card card-body mb-3">
@@ -36,7 +36,12 @@ class CommentItem extends Component {
               <button
                 className="btn btn-danger mr-1"
                 type="button"
-                onClick={this.onDeleteClick.bind(this, postId, comment._id)}
+                onClick={this.onDeleteClick.bind(
+                  this,
+                  profileId,
+                  postId,
+                  comment._id
+                )}
               >
                 Delete Comment
               </button>
@@ -49,9 +54,10 @@ class CommentItem extends Component {
 }
 
 CommentItem.propTypes = {
-  //deleteComment: PropTypes.func.isRequired,
+  deleteProfileComment: PropTypes.func.isRequired,
   comment: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
+  profileId: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired
 };
 
@@ -61,5 +67,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {}
+  { deleteProfileComment }
 )(CommentItem);
