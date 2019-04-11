@@ -59,3 +59,15 @@ footer {
   left: 0;
   width: 100%;
 }
+
+.num-books{
+  color: #fff;
+  font-size: 14px;
+  background-color: #bbb;
+
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  padding: 2px 0px 0 8px;
+  display: inline-block;
+}

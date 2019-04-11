@@ -20,7 +20,7 @@ class Navbar extends Component {
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/cart">
-            Cart <span className="num-books"> {cart.length} </span>
+            Cart <span className="num-books">{cart.length}</span>
           </Link>
         </li>
         <li className="nav-item">

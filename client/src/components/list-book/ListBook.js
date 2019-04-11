@@ -109,7 +109,7 @@ class ListBook extends Component {
 
               <div className="form-group">
                 <input
-                  type="text"
+                  type="number"
                   className={classnames("form-control form-control-lg", {"is-invalid": errors.price})}
                   placeholder="* Price"
                   name="price"

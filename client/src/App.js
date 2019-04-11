@@ -22,7 +22,7 @@ import "./App.css";
 import { clearCurrentProfile } from "./actions/profileActions";
 import EditProfile from "./components/edit-profile/EditProfile";
 import ListBook from "./components/list-book/ListBook";
-import AllBooks from "./components/AllBooks/AllBooks";
+import AllBooks from "./components/books/AllBooks";
 import Cart from "./components/cart/Cart";
 
 import Posts from "./components/posts/Posts";
@@ -85,6 +85,9 @@ class App extends Component {
                 <PrivateRoute exact path="/list-book" component={ListBook} />
               </Switch>
               <Switch>
+                <PrivateRoute exact path="/All-books" component={AllBooks} />
+              </Switch>
+              <Switch>
                 <PrivateRoute exact path="/posts" component={Posts} />
               </Switch>
               <Switch>
@@ -96,6 +99,9 @@ class App extends Component {
                   path="/profile-post/:profileId/:id"
                   component={ProfilePost}
                 />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/cart" component={Cart} />
               </Switch>
             </div>
             <Footer />
