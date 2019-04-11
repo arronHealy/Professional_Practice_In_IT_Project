@@ -14,7 +14,11 @@ import {
   GET_PROFILE_POST,
   ADD_PROFILE_COMMENT,
   POST_LOADING,
-  DELETE_PROFILE_COMMENT
+  DELETE_PROFILE_COMMENT,
+  ADD_TO_CART,
+  GET_CART,
+  REMOVE_BOOK
+
 } from "./types";
 
 //create profile for user
@@ -238,6 +242,62 @@ export const deleteProfileComment = (profileId, postId, id) => dispatch => {
       })
     );
 };
+
+// add a book to cart
+export const addToCart = (  bookId,profId) => dispatch => {
+  axios
+    .put(`/api/profile/cart/${bookId}`, {profId})
+    .then(res =>
+      dispatch({
+        type: ADD_TO_CART,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// remove a book to cart
+export const removeFromCart = (  bookId) => dispatch => {
+  axios
+    .put(`/api/profile/cart/rmv/${bookId}`)
+    .then(res =>
+      dispatch({
+        type: REMOVE_BOOK,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// get all books in cart
+export const getCart = ( ) => dispatch => {
+  axios
+    .get(`/api/profile/cart`)
+    .then(res =>
+      dispatch({
+        type: GET_CART,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+
 
 // profile loading
 export const setProfileLoading = () => {
