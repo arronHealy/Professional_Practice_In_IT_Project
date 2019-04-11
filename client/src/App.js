@@ -85,7 +85,7 @@ class App extends Component {
                 <PrivateRoute exact path="/list-book" component={ListBook} />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/All-books" component={AllBooks} />
+                <PrivateRoute exact path="/all-books" component={AllBooks} />
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/posts" component={Posts} />

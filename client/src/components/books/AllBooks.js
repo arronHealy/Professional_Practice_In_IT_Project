@@ -13,11 +13,7 @@ class AllBooks extends Component {
     componentDidMount() {
         this.props.getProfiles();
       }
-    
-    // onputincartClick(id) {
-    //     this.props.addToCart(id);
-    //   }
-    
+   
   render() {
     const { profiles, loading } = this.props.profile;
 
@@ -37,9 +33,9 @@ class AllBooks extends Component {
     
     return (
         <div className="col-md-12">
-        <h1 className="display-4 text-center">All Books for All Sellers </h1>
+        <h1 className="display-4 text-center">All Books for Sale</h1>
         <p className="lead text-center">
-          Browse and Connect with Sellers to find your favorite Books.
+          Browse and Connect with Sellers to find your Favorite Book
         </p>
         {bookItems}
       </div>

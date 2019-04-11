@@ -386,4 +386,83 @@ router.delete(
   }
 );
 
+//Add to cart
+router.put(
+  "/cart/:bookId",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+
+
+User.findById(req.user.id)
+    
+        .then((user) => {
+    
+       
+             Profile.findById( req.body.profId ).then(prof=>{
+prof.books.map(book=>{
+ 
+  if( book._id == req.params.bookId ){
+   
+  User.findByIdAndUpdate(req.user.id, { $addToSet: { cartBooks: book } }, { new: true }).then(d=>{
+    res.json(d.cartBooks);
+
+  })
+
+ 
+  }
+})
+
+             })
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
+
+//remove from the cart
+router.put(
+  "/cart/rmv/:bookId",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+
+User.findById(req.user.id)
+    
+        .then((user) => {
+          user.cartBooks.map(book=>{
+ 
+  if( book._id == req.params.bookId ){
+   
+  User.findByIdAndUpdate(req.user.id, { $pull: { cartBooks: book } }, { new: true }).then(d=>{
+    res.json(d.cartBooks);
+  })
+  }
+})
+})
+  .catch(err => res.status(404).json(err));
+  }
+);
+
+
+
+
+
+
+
+
+
+//get to cart
+router.get(
+  "/cart",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+
+User.findById(req.user.id).then(cart=>{
+
+res.json(cart.cartBooks)
+})      .catch(err => res.status(404).json(err));
+
+
+             })
+
+
 module.exports = router;

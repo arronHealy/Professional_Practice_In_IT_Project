@@ -32,13 +32,8 @@ class BookItem extends Component {
         <td>&euro;{book.price}</td>
         <td>{book.description}</td>
         <td>
-        <button
-        
-        type="button" className="btn btn-success"
-        onClick={this.addToCart.bind(this, {book,profile})}
-        >
-              Add Book To Your Cart
-            </button>
+
+        <button type="button" className="btn btn-success" onClick={this.addToCart.bind(this, {book,profile})}>Add Book To Your Cart</button>
         </td>
       </tr>
     ));

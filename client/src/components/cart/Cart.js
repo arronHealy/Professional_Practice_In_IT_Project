@@ -71,7 +71,7 @@ class Cart extends Component {
                     <h4> Total Price </h4>
                     </div>
                     <div  className="col-6">
-                        <span>  {totalPrice} </span>
+                        <span> &euro;{totalPrice} </span>
                     </div>
                 </div>
             </div>
