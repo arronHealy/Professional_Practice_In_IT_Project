@@ -13,10 +13,21 @@ class Navbar extends Component {
   }
   render() {
     const { isAuthenticated } = this.props.auth;
+    const cart = this.props.cart;
 
     // links shown when logged in
     const authLinks = (
       <ul className="navbar-nav ml-auto">
+        <li className="nav-item">
+          <Link className="nav-link" to="/cart">
+            Cart <span className="num-books"> {cart.length} </span>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/All-books">
+            Books
+          </Link>
+        </li>
         <li className="nav-item">
           <Link className="nav-link" to="/posts">
             Buyers Feed
@@ -108,7 +119,8 @@ Navbar.propTypes = {
 
 // mapped state to prop and set auth to prop
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  cart: state.profile.cart
 });
 
 export default connect(

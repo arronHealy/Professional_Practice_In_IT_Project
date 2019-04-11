@@ -22,6 +22,8 @@ import "./App.css";
 import { clearCurrentProfile } from "./actions/profileActions";
 import EditProfile from "./components/edit-profile/EditProfile";
 import ListBook from "./components/list-book/ListBook";
+import AllBooks from "./components/AllBooks/AllBooks";
+import Cart from "./components/cart/Cart";
 
 import Posts from "./components/posts/Posts";
 
