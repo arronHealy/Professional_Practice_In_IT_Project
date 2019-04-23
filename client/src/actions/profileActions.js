@@ -23,8 +23,27 @@ import {
 
 //create profile for user
 export const createProfile = (data, history) => dispatch => {
+
+  let formData = new FormData();
+
+        formData.append('profileImage',data.profileImage);
+        formData.append('username',data.username);
+        formData.append('website',data.website);
+        formData.append('location',data.location);
+        formData.append('bio',data.bio);
+        formData.append('facebook',data.facebook);
+        formData.append('twitter',data.twitter);
+        formData.append('linkedin',data.linkedin);
+        formData.append('youtube',data.youtube);
+
+        const configFile = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        };
+
   axios
-    .post("/api/profile", data)
+    .post("/api/profile", formData,configFile)
     .then(res => history.push("/dashboard"))
     .catch(err =>
       dispatch({
@@ -117,8 +136,27 @@ export const getProfileByUsername = username => dispatch => {
 
 // Add book
 export const listBook = (book, history) => dispatch => {
+
+  let bookData = new FormData();
+
+  bookData.append('title',book.title);
+  bookData.append('author',book.author);
+  bookData.append('genre',book.genre);
+  bookData.append('condition',book.condition);
+  bookData.append('price',book.price);
+  bookData.append('description',book.description);
+  bookData.append('twitter',book.twitter);
+  bookData.append('errors',book.errors);
+  bookData.append('bookImage',book.bookImage);
+
+  const configFile = {
+      headers: {
+          'content-type': 'multipart/form-data'
+      }
+  };
+
   axios
-    .post("/api/profile/list-book", book)
+    .post("/api/profile", formData,configFile)
     .then(res => history.push("/dashboard"))
     .catch(err =>
       dispatch({
