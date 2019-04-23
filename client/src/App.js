@@ -24,6 +24,7 @@ import EditProfile from "./components/edit-profile/EditProfile";
 import ListBook from "./components/list-book/ListBook";
 import AllBooks from "./components/books/AllBooks";
 import Cart from "./components/cart/Cart";
+import searchPage from "./components/search/searchPage";
 
 import Posts from "./components/posts/Posts";
 
@@ -102,6 +103,9 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/cart" component={Cart} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/search" component={searchPage} />
               </Switch>
             </div>
             <Footer />
