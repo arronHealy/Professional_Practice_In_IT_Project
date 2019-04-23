@@ -5,7 +5,9 @@
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
+    "formdata": "^0.10.4",
     "jwt-decode": "^2.2.0",
+    "multer": "^1.4.1",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-redux": "^6.0.1",

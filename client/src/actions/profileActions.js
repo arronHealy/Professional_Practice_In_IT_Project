@@ -156,7 +156,7 @@ export const listBook = (book, history) => dispatch => {
   };
 
   axios
-    .post("/api/profile", formData,configFile)
+    .post("/api/profile/list-book", bookData,configFile)
     .then(res => history.push("/dashboard"))
     .catch(err =>
       dispatch({

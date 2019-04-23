@@ -11,7 +11,6 @@ class CreateProfile extends Component {
 
     this.state = {
       username: "",
-      profileImage: null,
       website: "",
       location: "",
       bio: "",
@@ -19,7 +18,8 @@ class CreateProfile extends Component {
       twitter: "",
       youtube: "",
       linkedin: "",
-      errors: {}
+      errors: {},
+      profileImage: null
     };
 
     this.onChange = this.onChange.bind(this);
@@ -54,6 +54,10 @@ class CreateProfile extends Component {
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onChangeFile(e) {
+    this.setState({profileImage:e.target.files[0]})
   }
 
   render() {
@@ -127,7 +131,7 @@ class CreateProfile extends Component {
               </div>
 
               <div className="form-group">
-                <label forhtml="exampleFormControlFile2">Upload your Avatar</label>
+                <label forhtml="exampleFormControlFile2">Upload your avatar</label>
                 <input type="file" className="form-control-file" id="exampleFormControlFile2" name="profileImage" onChange= {this.onChangeFile} />
               </div>
 

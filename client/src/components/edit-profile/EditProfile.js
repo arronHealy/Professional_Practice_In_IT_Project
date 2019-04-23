@@ -19,7 +19,8 @@ class CreateProfile extends Component {
       twitter: "",
       youtube: "",
       linkedin: "",
-      errors: {}
+      errors: {},
+      profileImage: null
     };
 
     this.onChange = this.onChange.bind(this);
@@ -36,7 +37,7 @@ class CreateProfile extends Component {
       this.setState({ errors: nextProps.errors });
     }
 
-    if (nextProps.profile) {
+    if (nextProps.profile.profile) {
       const profile = nextProps.profile.profile;
 
       profile.website = !isEmpty(profile.website) ? profile.website : "";

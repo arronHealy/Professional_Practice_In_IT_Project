@@ -42,7 +42,7 @@ app.use("/api/users", users);
 app.use("/api/profile", profile);
 app.use("/api/posts", posts);
 
-// make static folder for upload images
+// make static folder for uploading images
 app.use('/uploads', express.static('uploads'));
 app.use('/profile/uploads', express.static('uploads'));
 

@@ -147,7 +147,7 @@ router.get("/all", (req, res) => {
 
 //post to create profile
 router.post(
-  "/",
+  "/", upload.single('profileImage'),
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateProfileInput(req.body);
@@ -180,6 +180,10 @@ router.post(
 
     if (req.body.bio) {
       profileFields.bio = req.body.bio;
+    }
+
+    if (req.file.path) {
+      profileFields.profileImage = req.file.path;
     }
 
     profileFields.socialLinks = {};
@@ -370,7 +374,7 @@ router.delete(
 //  POST book to profile
 
 router.post(
-  "/list-book",
+  "/list-book", upload2.single('bookImage'),
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateBookInput(req.body);
@@ -388,7 +392,8 @@ router.post(
         genre: req.body.genre,
         condition: req.body.condition,
         price: req.body.price,
-        description: req.body.description
+        description: req.body.description,
+        bookImage: req.file.path
       };
 
       // Add to book array

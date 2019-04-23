@@ -15,11 +15,13 @@ class ListBook extends Component {
             condition: '',
             price: '',
             description: '',
-            errors: {}
+            errors: {},
+            bookImage: null
         };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeFile = this.onChangeFile.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -37,7 +39,8 @@ class ListBook extends Component {
         genre: this.state.genre,
         condition: this.state.condition,
         price: this.state.price,
-        description: this.state.description
+        description: this.state.description,
+        bookImage: this.state.bookImage,
       };
   
       this.props.listBook(book, this.props.history);
@@ -45,6 +48,10 @@ class ListBook extends Component {
 
   onChange(e) {
     this.setState({[e.target.name]: e.target.value});
+  }
+
+  onChangeFile(e) {
+    this.setState({bookImage:e.target.files[0]})
   }
 
   render() {
@@ -128,6 +135,11 @@ class ListBook extends Component {
                    value={this.state.description}
                    onChange={this.onChange}
                 /></div>
+
+              <div className="form-group">
+                <label forhtml="exampleFormControlFile3">Upload the Book Image</label>
+                <input type="file" className="form-control-file" id="exampleFormControlFile3" name="bookImage" onChange= {this.onChangeFile} />
+              </div>
 
                 <input
                   type="submit"
