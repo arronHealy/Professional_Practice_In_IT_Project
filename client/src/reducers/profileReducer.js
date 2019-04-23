@@ -7,14 +7,18 @@ import {
   DELETE_PROFILE_POST,
   GET_PROFILE_POST,
   ADD_PROFILE_COMMENT,
-  DELETE_PROFILE_COMMENT
+  DELETE_PROFILE_COMMENT,
+  ADD_TO_CART,
+  GET_CART,
+  REMOVE_BOOK
 } from "../actions/types";
 
 const initialState = {
   profile: null,
   profiles: null,
   post: {},
-  loading: false
+  loading: false,
+  cart:[]
 };
 
 export default function(state = initialState, action) {
@@ -78,6 +82,21 @@ export default function(state = initialState, action) {
           ...state.post,
           comments: action.payload
         }
+      };
+      case GET_CART:
+      return {
+        ...state,
+       cart:action.payload
+      };
+      case ADD_TO_CART:
+      return {
+        ...state,
+          cart: action.payload
+      };
+      case REMOVE_BOOK:
+      return {
+        ...state,
+          cart: action.payload
       };
     default:
       return state;

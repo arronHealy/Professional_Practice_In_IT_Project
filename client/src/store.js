@@ -4,18 +4,17 @@ import rootReducer from "./reducers";
 
 const initialState = {};
 
-const middleware = [thunk];
-
-//const store = createStore (rootReducer, initialState, compose(applyMiddleware(...middleware)));
+const middleWare = [thunk];
 
 // creating store and enabling redux devtools extension
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
-  rootReducer,
-  initialState,
-  compose(
-    applyMiddleware(...middleware),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-);
+  rootReducer, 
+  initialState, 
+  composeEnhancers(
+  applyMiddleware(...middleWare)
+));
 
 export default store;

@@ -17,6 +17,56 @@ const User = require("../models/User");
 
 const Profile = require("../models/Profile");
 
+// image saving using multer
+const multer  = require('multer')
+
+// storage for profile image
+let storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './uploads/profiles/');
+  },
+  filename: function(req, file, cb) {
+    cb(null, new Date().toISOString().replace(/:/g, '-') +   file.originalname);
+  }
+});
+
+// storage for books image
+let storage2 = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './uploads/books/');
+  },
+  filename: function(req, file, cb) {
+    cb(null, new Date().toISOString().replace(/:/g, '-') +   file.originalname);
+  }
+});
+
+let fileFilter = (req, file, cb) => {
+  // reject a file
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+let upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
+
+
+let upload2 = multer({
+  storage: storage2,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
+
+
 //initial test route
 router.get("/test", (req, res) => res.json({ msg: "profile route working" }));
 
@@ -97,7 +147,7 @@ router.get("/all", (req, res) => {
 
 //post to create profile
 router.post(
-  "/",
+  "/", upload.single('profileImage'),
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateProfileInput(req.body);
@@ -130,6 +180,10 @@ router.post(
 
     if (req.body.bio) {
       profileFields.bio = req.body.bio;
+    }
+
+    if (req.file.path) {
+      profileFields.profileImage = req.file.path;
     }
 
     profileFields.socialLinks = {};
@@ -320,7 +374,7 @@ router.delete(
 //  POST book to profile
 
 router.post(
-  "/list-book",
+  "/list-book", upload2.single('bookImage'),
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateBookInput(req.body);
@@ -338,7 +392,8 @@ router.post(
         genre: req.body.genre,
         condition: req.body.condition,
         price: req.body.price,
-        description: req.body.description
+        description: req.body.description,
+        bookImage: req.file.path
       };
 
       // Add to book array
@@ -385,5 +440,61 @@ router.delete(
     });
   }
 );
+
+//Add to cart
+router.put(
+  "/cart/:bookId",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => { 
+    User.findById(req.user.id)
+        .then((user) => {
+             Profile.findById( req.body.profId ).then(prof=>{
+              prof.books.map(book=>{
+                if( book._id == req.params.bookId ){
+                  User.findByIdAndUpdate(req.user.id, { $addToSet: { cartBooks: book } }, { new: true }).then(d=>{
+                  res.json(d.cartBooks);
+                  })
+                }
+              })
+            })
+        })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
+//remove from the cart
+router.put(
+  "/cart/rmv/:bookId",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+
+    User.findById(req.user.id)
+        
+      .then((user) => {
+        user.cartBooks.map(book=>{
+    
+          if( book._id == req.params.bookId ){
+            User.findByIdAndUpdate(req.user.id, { $pull: { cartBooks: book } }, { new: true }).then(d=>{
+            res.json(d.cartBooks);
+            })
+      }
+    })
+    })
+      .catch(err => res.status(404).json(err));
+      }
+);
+
+//get to cart
+router.get(
+  "/cart",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+
+    User.findById(req.user.id).then(cart=>{
+
+    res.json(cart.cartBooks)
+    })      .catch(err => res.status(404).json(err));
+})
+
 
 module.exports = router;

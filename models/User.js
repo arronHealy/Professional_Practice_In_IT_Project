@@ -15,7 +15,37 @@ const UserSchema = {
   password: {
     type: String,
     required: true
-  }
+  },
+
+  cartBooks: [
+    {
+      title: {
+        type: String,
+        required: true
+      },
+      author: {
+        type: String,
+        required: true
+      },
+      genre: {
+        type: String
+      },
+      condition: {
+        type: String,
+        required: true
+      },
+      price: {
+        type: Number,
+        required: true
+      },
+      description: {
+        type: String
+      },
+      bookImage: {
+        type: String
+      }
+    }
+  ]
 };
 
 module.exports = User = mongoose.model("users", UserSchema);
