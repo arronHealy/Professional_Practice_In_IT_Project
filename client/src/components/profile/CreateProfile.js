@@ -11,7 +11,7 @@ class CreateProfile extends Component {
 
     this.state = {
       username: "",
-      profileImage: "../../images/noProfilePic.jpg",
+      profileImage: null,
       website: "",
       location: "",
       bio: "",
@@ -24,6 +24,7 @@ class CreateProfile extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeFile = this.onChangeFile.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -38,6 +39,7 @@ class CreateProfile extends Component {
     //console.log("submit");
     const profileData = {
       username: this.state.username,
+      profileImage: this.state.profileImage,
       website: this.state.website,
       location: this.state.location,
       bio: this.state.bio,
@@ -122,6 +124,11 @@ class CreateProfile extends Component {
                   Fill in your Bio to tell your customers about yourself and
                   your products
                 </small>
+              </div>
+
+              <div className="form-group">
+                <label forhtml="exampleFormControlFile2">Upload your Avatar</label>
+                <input type="file" className="form-control-file" id="exampleFormControlFile2" name="profileImage" onChange= {this.onChangeFile} />
               </div>
 
               <div>
