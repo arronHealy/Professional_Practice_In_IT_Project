@@ -24,6 +24,7 @@ class CreateProfile extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeFile = this.onChangeFile.bind(this);
   }
 
   componentDidMount() {
@@ -82,6 +83,7 @@ class CreateProfile extends Component {
     //console.log("submit");
     const profileData = {
       username: this.state.username,
+      profileImage: this.state.profileImage,
       website: this.state.website,
       location: this.state.location,
       bio: this.state.bio,
@@ -96,6 +98,10 @@ class CreateProfile extends Component {
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onChangeFile(e) {
+    this.setState({profileImage:e.target.files[0]})
   }
 
   render() {
@@ -163,6 +169,11 @@ class CreateProfile extends Component {
                   Fill in your Bio to tell your customers about yourself and
                   your products
                 </small>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="exampleFormControlFile1">Upload your Avatar</label>
+                <input type="file"   className="form-control-file" id="exampleFormControlFile1" name="profileImage" onChange= {this.onChangeFile} />
               </div>
 
               <div>
