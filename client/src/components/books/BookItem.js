@@ -32,14 +32,19 @@ class BookItem extends Component {
         <td>&euro;{book.price}</td>
         <td>{book.description}</td>
         <td>
-
-        <button type="button" className="btn btn-success" onClick={this.addToCart.bind(this, {book,profile})}>Add Book To Your Cart</button>
-        </td>
+          <button
+              type="button"
+              className="btn btn-success"
+              onClick={this.addToCart.bind(this, { book })}
+            >
+              Add Book To Your Cart
+            </button>
+          </td>
       </tr>
     ));
     return (
       <div>
-        <h4 className="mb-4"> { profile.username} Books </h4>
+        <h4 className="mb-4"> {profile.username} Books </h4>
         <table className="table">
           <thead>
             <tr>

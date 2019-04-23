@@ -6,6 +6,33 @@ import { logoutUser } from "../../actions/authAction";
 import { clearCurrentProfile } from "../../actions/profileActions";
 
 class Navbar extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      search: ""
+    };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const search = {
+      text: this.state.search
+    };
+
+    // calling search action
+    this.props.search(search);
+    this.props.history.push("/search");
+  }
+
   onLogoutClick(e) {
     e.preventDefault();
     this.props.clearCurrentProfile();
@@ -93,12 +120,14 @@ class Navbar extends Component {
             </ul>
 
             {isAuthenticated ? authLinks : guestLinks}
-            <form className="form-inline">
+            <form className="form-inline" onSubmit={this.onSubmit}>
               <input
                 className="form-control mr-sm-2 ml-3"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                name="search"
+                onChange={this.onChange}
               />
               <button className="btn btn-success my-2 my-sm-0" type="submit">
                 Search
@@ -125,5 +154,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logoutUser, clearCurrentProfile }
-)(Navbar);
+  { logoutUser, clearCurrentProfile, search }
+)(withRouter(Navbar));
