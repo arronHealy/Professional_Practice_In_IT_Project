@@ -1,4 +1,5 @@
 import axios from "axios";
+import isEmpty from "../validation/is-empty";
 
 //import action types
 import {
@@ -17,7 +18,8 @@ import {
   DELETE_PROFILE_COMMENT,
   ADD_TO_CART,
   GET_CART,
-  REMOVE_BOOK
+  REMOVE_BOOK,
+  GET_SEARCH_RESULT
 
 } from "./types";
 
@@ -282,9 +284,9 @@ export const deleteProfileComment = (profileId, postId, id) => dispatch => {
 };
 
 // add a book to cart
-export const addToCart = (  bookId,profId) => dispatch => {
+export const addToCart = bookId => dispatch => {
   axios
-    .put(`/api/profile/cart/${bookId}`, {profId})
+    .put(`/api/profile/cart/${bookId}`)
     .then(res =>
       dispatch({
         type: ADD_TO_CART,
@@ -300,7 +302,7 @@ export const addToCart = (  bookId,profId) => dispatch => {
 };
 
 // remove a book to cart
-export const removeFromCart = (  bookId) => dispatch => {
+export const removeFromCart = bookId => dispatch => {
   axios
     .put(`/api/profile/cart/rmv/${bookId}`)
     .then(res =>
@@ -318,7 +320,7 @@ export const removeFromCart = (  bookId) => dispatch => {
 };
 
 // get all books in cart
-export const getCart = ( ) => dispatch => {
+export const getCart = () => dispatch => {
   axios
     .get(`/api/profile/cart`)
     .then(res =>
@@ -335,7 +337,24 @@ export const getCart = ( ) => dispatch => {
     );
 };
 
-
+// search
+export const search = search => dispatch => {
+  search.text = isEmpty(search.text) ? "all" : search.text;
+  axios
+    .get(`/api/profile/search/${search.text}`)
+    .then(res => {
+      dispatch({
+        type: GET_SEARCH_RESULT,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
 
 // profile loading
 export const setProfileLoading = () => {
