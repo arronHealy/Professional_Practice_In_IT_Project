@@ -60,16 +60,9 @@ class BookItem extends Component {
   }
 }
 
-
-
-
-
-
 BookItem.propTypes = {
   addToCart: PropTypes.func.isRequired
 };
-
-
 
 export default connect(
   null,  { addToCart }

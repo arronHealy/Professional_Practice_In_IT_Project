@@ -68,7 +68,6 @@ export const getPost = id => dispatch => {
 };
 
 // delete a post
-
 export const deletePost = id => dispatch => {
   axios
     .delete("/api/posts/" + id)
@@ -130,7 +129,6 @@ export const setPostLoading = () => {
 };
 
 //clear errors
-
 export const clearErrors = () => {
   return {
     type: CLEAR_ERRORS
