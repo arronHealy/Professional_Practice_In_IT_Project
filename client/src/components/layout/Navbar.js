@@ -73,7 +73,6 @@ class Navbar extends Component {
             onClick={this.onLogoutClick.bind(this)}
             className="nav-link"
           >
-            {" "}
             Logout
           </a>
         </li>

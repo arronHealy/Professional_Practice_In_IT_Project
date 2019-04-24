@@ -428,7 +428,6 @@ router.delete(
 );
 
 // DELETE user and profile
-
 router.delete(
   "/",
   passport.authenticate("jwt", { session: false }),
@@ -445,19 +444,23 @@ router.delete(
 router.put(
   "/cart/:bookId",
   passport.authenticate("jwt", { session: false }),
-  (req, res) => { 
+  (req, res) => {
     User.findById(req.user.id)
-        .then((user) => {
-             Profile.findById( req.body.profId ).then(prof=>{
-              prof.books.map(book=>{
-                if( book._id == req.params.bookId ){
-                  User.findByIdAndUpdate(req.user.id, { $addToSet: { cartBooks: book } }, { new: true }).then(d=>{
-                  res.json(d.cartBooks);
-                  })
-                }
-              })
-            })
-        })
+      .then(user => {
+        Profile.find({ "books._id": req.params.bookId }).then(prof => {
+          prof[0].books.map(book => {
+            if (book._id == req.params.bookId) {
+              User.findByIdAndUpdate(
+                req.user.id,
+                { $addToSet: { cartBooks: book } },
+                { new: true }
+              ).then(d => {
+                res.json(d.cartBooks);
+              });
+            }
+          });
+        });
+      })
       .catch(err => res.status(404).json(err));
   }
 );
@@ -467,21 +470,23 @@ router.put(
   "/cart/rmv/:bookId",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-
     User.findById(req.user.id)
-        
-      .then((user) => {
-        user.cartBooks.map(book=>{
-    
-          if( book._id == req.params.bookId ){
-            User.findByIdAndUpdate(req.user.id, { $pull: { cartBooks: book } }, { new: true }).then(d=>{
-            res.json(d.cartBooks);
-            })
-      }
-    })
-    })
+
+      .then(user => {
+        user.cartBooks.map(book => {
+          if (book._id == req.params.bookId) {
+            User.findByIdAndUpdate(
+              req.user.id,
+              { $pull: { cartBooks: book } },
+              { new: true }
+            ).then(d => {
+              res.json(d.cartBooks);
+            });
+          }
+        });
+      })
       .catch(err => res.status(404).json(err));
-      }
+  }
 );
 
 //get to cart
@@ -495,6 +500,62 @@ router.get(
     res.json(cart.cartBooks)
     })      .catch(err => res.status(404).json(err));
 })
+
+// search
+router.get(
+  "/search/:search",
+
+  (req, res) => {
+    let errors = {};
+    let books = [];
+
+    if (req.params.search !== "all") {
+      Profile.find({
+        $or: [
+          { "books.author": { $regex: req.params.search, $options: "i" } },
+          { "books.title": { $regex: req.params.search, $options: "i" } },
+          { "books.genre": { $regex: req.params.search, $options: "i" } }
+        ]
+      })
+
+        .then(profiles => {
+          if (!(profiles.length > 0)) {
+            errors.notfound = "no result matches!";
+            res.json(books);
+          } else {
+            profiles.map(profile => {
+              const bookSearch = profile.books.filter(
+                book =>
+                  book.author.includes(req.params.search) ||
+                  book.title.includes(req.params.search) ||
+                  book.genre.includes(req.params.search)
+              );
+              books.push(bookSearch);
+            });
+            res.json(books);
+          }
+        })
+        .catch(err => console.log(err));
+    } else {
+      Profile.find()
+        .then(profiles => {
+          if (!profiles) {
+            errors.notfound = "There are no books!";
+            res.status(404).json(errors);
+          }
+          let books = [];
+          profiles.map(profile => {
+            books.push(profile.books);
+          });
+          res.json(books);
+        })
+        .catch(err => res.status(404).json({ profile: "There are no books!" }));
+    }
+  }
+);
+
+module.exports = router;
+
 
 
 module.exports = router;
