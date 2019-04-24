@@ -26,6 +26,8 @@ const ProfileSchema = new Schema({
   },
   books: [
     {
+      _id: { type: Schema.Types.ObjectId, auto: true },
+      
       title: {
         type: String,
         required: true

@@ -18,3 +18,4 @@ export const DELETE_PROFILE_COMMENT = "DELETE_PROFILE_COMMENT";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const GET_CART = "GET_CART";
 export const REMOVE_BOOK = "REMOVE_BOOK";
+export const GET_SEARCH_RESULT = "GET_SEARCH_RESULT";

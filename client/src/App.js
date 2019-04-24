@@ -24,7 +24,7 @@ import EditProfile from "./components/edit-profile/EditProfile";
 import ListBook from "./components/list-book/ListBook";
 import AllBooks from "./components/books/AllBooks";
 import Cart from "./components/cart/Cart";
-import searchPage from "./components/search/searchPage";
+import searchPage from "./components/search/SearchPage";
 
 import Posts from "./components/posts/Posts";
 

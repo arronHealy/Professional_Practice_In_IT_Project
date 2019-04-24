@@ -39,7 +39,7 @@ class AllBooks extends Component {
         </p>
         {bookItems}
       </div>
-    )
+    );
   }
 }
 
