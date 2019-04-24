@@ -8,7 +8,6 @@ import { search } from "../../actions/profileActions";
 import { withRouter } from "react-router-dom";
 
 class Navbar extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -49,17 +48,17 @@ class Navbar extends Component {
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/cart">
-            Cart <span className="num-books">{cart.length}</span>
+            <div>
+              <i className="fas fa-shopping-cart mr-2 h-25 w-25" />
+              <span className="num-books bg-transparent h-25 w-25">
+                {cart.length}
+              </span>
+            </div>
           </Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/All-books">
             Books
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/posts">
-            Buyers Feed
           </Link>
         </li>
         <li className="nav-item">
@@ -118,12 +117,20 @@ class Navbar extends Component {
                   Book Dealer Profiles
                 </Link>
               </li>
+              {isAuthenticated ? (
+                <li className="nav-item">
+                  <Link className="nav-link" to="/posts">
+                    Buyers Feed
+                  </Link>
+                </li>
+              ) : null}
             </ul>
 
             {isAuthenticated ? authLinks : guestLinks}
+
             <form className="form-inline" onSubmit={this.onSubmit}>
               <input
-                className="form-control mr-sm-2 ml-3"
+                className="form-control mr-sm-2 ml-2"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"

@@ -13,16 +13,18 @@ class Books extends Component {
     const books = this.props.books.map(book => (
       <tr key={book._id}>
         <td>
-          <img
-            src={
-              isEmpty(book.bookImage)
-                ? require("../../images/noBookImage.jpg")
-                : book.bookImage
-            }
-            alt=""
-            height="100"
-            width="5"
-          />
+          <div className="w-75 h-75">
+            <img
+              src={
+                isEmpty(book.bookImage)
+                  ? require("../../images/noBookImage.jpg")
+                  : book.bookImage
+              }
+              alt=""
+              height="100"
+              width="5"
+            />
+          </div>
         </td>
         <td>{book.title}</td>
         <td>{book.author}</td>

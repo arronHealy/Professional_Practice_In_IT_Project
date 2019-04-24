@@ -12,7 +12,7 @@ class ProfileBooks extends Component {
 
     if (profile.books.length > 0) {
       books = profile.books.map((book, index) => (
-        <ProfileBookItem key={index} book={book} />
+        <ProfileBookItem key={index} book={book} profile={profile} />
       ));
     } else {
       books = <h4>{firstName} has no Books listed for sale</h4>;

@@ -14,32 +14,33 @@ class BookItem extends Component {
     const books = profile.books.map(book => (
       <tr key={book._id}>
         <td>
-          <img
-            src={
-              isEmpty(book.bookImage)
-                ? require("../../images/noBookImage.jpg")
-                : book.bookImage
-            }
-            alt=""
-            height="100"
-            width="5"
-          />
+          <div className="w-75 h-75">
+            <img
+              src={
+                isEmpty(book.bookImage)
+                  ? require("../../images/noBookImage.jpg")
+                  : book.bookImage
+              }
+              alt=""
+              height="100"
+              width="5"
+            />
+          </div>
         </td>
         <td>{book.title}</td>
         <td>{book.author}</td>
         <td>{book.genre}</td>
         <td>{book.condition}</td>
         <td>&euro;{book.price}</td>
-        <td>{book.description}</td>
         <td>
           <button
-              type="button"
-              className="btn btn-success"
-              onClick={this.addToCart.bind(this, { book })}
-            >
-              Add Book To Your Cart
-            </button>
-          </td>
+            type="button"
+            className="btn btn-success"
+            onClick={this.addToCart.bind(this, { book })}
+          >
+            Add Book To Your Cart
+          </button>
+        </td>
       </tr>
     ));
     return (
@@ -54,7 +55,6 @@ class BookItem extends Component {
               <th>Genre</th>
               <th>Condition</th>
               <th>Price</th>
-              <th>Description</th>
               <th />
             </tr>
             {books}
@@ -70,9 +70,6 @@ BookItem.propTypes = {
 };
 
 export default connect(
-  null,  { addToCart }
+  null,
+  { addToCart }
 )(BookItem);
-
-
-
-  

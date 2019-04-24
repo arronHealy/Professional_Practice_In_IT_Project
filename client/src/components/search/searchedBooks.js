@@ -14,23 +14,22 @@ class Searchedbooks extends Component {
     return (
       <tr>
         <td>
-          <img
-            src={
-              isEmpty(book.bookImage)
-                ? require("../../images/noBookImage.jpg")
-                : book.bookImage
-            }
-            alt=""
-            height="100"
-            width="5"
-          />
+          <div className="w-50 h-50">
+            <img
+              src={
+                isEmpty(book.bookImage)
+                  ? require("../../images/noBookImage.jpg")
+                  : book.bookImage
+              }
+              alt=""
+            />
+          </div>
         </td>
         <td>{book.title}</td>
         <td>{book.author}</td>
         <td>{book.genre}</td>
         <td>{book.condition}</td>
         <td>&euro;{book.price}</td>
-        <td>{book.description}</td>
         <td>
           <button
             type="button"

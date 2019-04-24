@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import Spinner from "../../utilities/Spinner";
-import Searchedbooks from "./SearchedBooks";
+import Searchedbooks from "./searchedBooks";
 
 class searchPage extends Component {
   componentDidMount() {}
@@ -47,7 +47,6 @@ class searchPage extends Component {
               <th>Genre</th>
               <th>Condition</th>
               <th>Price</th>
-              <th>Description</th>
               <th />
             </tr>
             {bookItems}

@@ -1,8 +1,16 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+
+import { connect } from "react-redux";
+import { addToCart } from "../../actions/profileActions";
 
 import isEmpty from "../../validation/is-empty";
 
 class ProfileBookItem extends Component {
+  addToCart(id) {
+    this.props.addToCart(id);
+  }
+
   render() {
     const { book } = this.props;
 
@@ -28,7 +36,11 @@ class ProfileBookItem extends Component {
             <p className="lead">Condition: {book.condition}</p>
             <p className="lead">Description: {book.description}</p>
             <p className="lead">Price: &euro;{book.price}</p>
-            <button type="button" className="btn btn-success">
+            <button
+              type="button"
+              className="btn btn-success"
+              onClick={this.addToCart.bind(this, book._id)}
+            >
               Add Book To Your Cart
             </button>
           </div>
@@ -38,4 +50,11 @@ class ProfileBookItem extends Component {
   }
 }
 
-export default ProfileBookItem;
+ProfileBookItem.propTypes = {
+  addToCart: PropTypes.func.isRequired
+};
+
+export default connect(
+  null,
+  { addToCart }
+)(ProfileBookItem);
