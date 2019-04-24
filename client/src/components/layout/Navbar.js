@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authAction";
 import { clearCurrentProfile } from "../../actions/profileActions";
+import { search } from "../../actions/profileActions";
+import { withRouter } from "react-router-dom";
 
 class Navbar extends Component {
 

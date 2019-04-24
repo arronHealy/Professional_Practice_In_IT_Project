@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 class BookItem extends Component {
   addToCart(ids) {
-    this.props.addToCart(ids.book._id,ids.profile._id);
+    this.props.addToCart(ids.book._id);
   }
   render() {
     const { profile } = this.props;

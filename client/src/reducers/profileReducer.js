@@ -10,7 +10,8 @@ import {
   DELETE_PROFILE_COMMENT,
   ADD_TO_CART,
   GET_CART,
-  REMOVE_BOOK
+  REMOVE_BOOK,
+  GET_SEARCH_RESULT
 } from "../actions/types";
 
 const initialState = {
@@ -18,7 +19,8 @@ const initialState = {
   profiles: null,
   post: {},
   loading: false,
-  cart:[]
+  cart:[],
+  books: []
 };
 
 export default function(state = initialState, action) {
@@ -97,6 +99,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
           cart: action.payload
+      };
+      case GET_SEARCH_RESULT:
+      return {
+        ...state,
+        books: action.payload
       };
     default:
       return state;
