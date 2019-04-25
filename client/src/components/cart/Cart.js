@@ -36,14 +36,14 @@ class Cart extends Component {
             }
             alt=""
             height="100"
-            width="5"
+            width=".5"
             />
         </td>
         <td>{book.title}</td>
         <td>{book.genre}</td>
         <td>&euro;{ book.price}</td>
         <td>
-        <button type="button" className="btn btn-success" onClick={this.removeFromCart.bind(this, {book})}>Remove Item</button>
+        <button type="button" className="btn btn-danger" onClick={this.removeFromCart.bind(this, {book})}>Remove Item</button>
         </td>
         </tr>
     ));
@@ -67,11 +67,14 @@ class Cart extends Component {
                 </table>
 
                 <div className="row">
-                    <div  className="col-6">
-                    <h4> Total Price </h4>
+                    <div className="col-6">
+                        <h4> Total Price </h4>
                     </div>
-                    <div  className="col-6">
+                    <div className="col-6">
                         <span> &euro;{totalPrice} </span>
+                    </div>
+                    <div classname="col-6">
+                        <a href="https://www.paypal.com/ie/home" class="btn btn-info" role="button">Pay Now</a>
                     </div>
                 </div>
             </div>
@@ -88,7 +91,7 @@ Cart.propTypes = {
   const mapStateToProps = state => ({
     cart: state.profile.cart
 });
-  
+
 export default connect(
     mapStateToProps,
      {  getCart,removeFromCart }
