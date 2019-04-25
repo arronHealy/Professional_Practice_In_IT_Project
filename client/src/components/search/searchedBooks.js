@@ -33,7 +33,7 @@ class Searchedbooks extends Component {
         <td>
           <button
             type="button"
-            className="btn btn-success"
+            className="btn btn-success btn-cart"
             onClick={this.addToCart.bind(this, { book })}
           >
             Add Book To Your Cart
