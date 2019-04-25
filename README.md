@@ -22,7 +22,7 @@
 >Module Supervisor: Damien Costello  
 >Project Title: Book-King  
 
-[Top](#details)  
+[Top](#contents)  
 
 ### Introduction
 
@@ -30,6 +30,8 @@
 This project was part of a 3rd year software development course in GMIT.   
 The purpose of this module was to give students an opportunity to design, develop and deploy a project, delivering a piece of software in a timely and standards driven
 manner. 
+
+[Top](#contents) 
 
 ![alt text](https://cdn-images-1.medium.com/max/1600/1*FVtCyRdJ6KOr4YswTtwMeA.jpeg)
 
@@ -40,7 +42,7 @@ During our first meeting we agreed on the project we would be undertaking throug
 We then drew out the plan of how we would build the project and decided to use the MERN (MongoDB, Express, React, NodeJs) stack development technologies.
 With this decision came the learning of a new technology, React.
 
-[Top](#details)     
+[Top](#contents)     
 
 ## Architecture<a name = "architecture"></a>     
 ![alt text](https://2.bp.blogspot.com/-cJrZfbVrH-0/WtT7O9CyTEI/AAAAAAAAGZw/znD9Yxlf5VYjRAGvoQjRizN_EXsMREKeQCLcBGAs/s1600/mern%2Bstack%2Bdevelopment.png)  
@@ -49,7 +51,7 @@ With this decision came the learning of a new technology, React.
 [React](https://reactjs.org/)  
 [NodeJs](https://nodejs.org/en/)
 
-[Top](#details)  
+[Top](#contents)  
 
 ## Features<a name = "features"></a>  
 The main features of our project are as follows:     
@@ -65,12 +67,14 @@ The main features of our project are as follows:
 * Users can view other peoples profiles
 * Users can see what books others users are selling via their profile
 
-[Top](#details)    
+[Top](#contents)    
 
 ## Deployment<a name = "deployment"></a>
 1. Dowload or Clone repo from Github
 2. Run npm install from both the main (Professional_Practice_In_IT_Project) folder and the client folder
 3. From the Professional_Practice_In_IT_Project folder, using concurrently, we can start both the front and back end servers using the single command "npm run dev".
+
+[Top](#contents) 
 
 ## References<a name = "references"></a>  
 * Docs  
@@ -81,5 +85,5 @@ https://www.youtube.com/watch?v=PBTYxXADG_k&list=PLillGF-RfqbbiTGgA77tGO426V3hRF
 https://www.youtube.com/watch?v=qvBZevK1HPo
 https://www.youtube.com/watch?v=-edmQKcOW8s
      
-[Top](#details)  
+[Top](#contents)  
 ---
