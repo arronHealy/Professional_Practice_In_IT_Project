@@ -36,20 +36,24 @@ manner.
 ![alt text](https://cdn-images-1.medium.com/max/1600/1*FVtCyRdJ6KOr4YswTtwMeA.jpeg)
 
 ## Project Overview<a name = "overview"></a>   
-We decided to build a website that allows users to buy and sell their books as well as talk to each other about books he / she likes.
-The project was, first and foremost, designed as a social media for book lovers. It allows users to create feeds on any topic and also allows other users to comment and join in in the discussion. 
-During our first meeting we agreed on the project we would be undertaking throughout the semester and with this came the question of what technologies we would be using for the build.
-We then drew out the plan of how we would build the project and decided to use the MERN (MongoDB, Express, React, NodeJs) stack development technologies.
-With this decision came the learning of a new technology, React.
+We decided to build a website that allows users to buy and sell their books as well as talk to each other about books he / she likes.     
+The project was, first and foremost, designed as a social media for book lovers. It allows users to create feeds on any topic and also allows other users to comment and join in in the discussion.    
+During our first meeting we agreed on the project we would be undertaking throughout the semester and with this came the question of what technologies we would be using for the build.     
+We then drew out the plan of how we would build the project and decided to use the MERN (MongoDB, Express, React, NodeJs) stack development technologies.     
+With this decision came the learning of a new technology, React.     
+We also used Redux while building the website to help build the user interface and to manage the project state.    
 
 [Top](#contents)     
 
 ## Architecture<a name = "architecture"></a>     
 ![alt text](https://2.bp.blogspot.com/-cJrZfbVrH-0/WtT7O9CyTEI/AAAAAAAAGZw/znD9Yxlf5VYjRAGvoQjRizN_EXsMREKeQCLcBGAs/s1600/mern%2Bstack%2Bdevelopment.png)  
+![alt text](https://redux.js.org/img/redux-logo-landscape.png)  
 [MongoDB](https://www.mongodb.com/)  
 [Express](https://expressjs.com/)  
 [React](https://reactjs.org/)  
-[NodeJs](https://nodejs.org/en/)
+[NodeJs](https://nodejs.org/en/)      
+        
+[Redux](https://redux.js.org/)
 
 [Top](#contents)  
 
