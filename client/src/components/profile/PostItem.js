@@ -1,18 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import classnames from "classnames";
+
 import { Link } from "react-router-dom";
 import isEmpty from "../../validation/is-empty";
 
-//import { deleteProfilePost } from "../../actions/profileActions";
-
 class PostItem extends Component {
-  onDeleteClick(id) {
-    //console.log(id);
-    //this.props.deletePost(id);
-  }
-
   render() {
     const { post, auth, showActions, profileId } = this.props;
 
@@ -35,25 +28,6 @@ class PostItem extends Component {
           </div>
           <div className="col-md-10">
             <p className="lead">{post.post}</p>
-            {showActions ? (
-              <span>
-                <Link
-                  to={"/profile-post/" + profileId + "/" + post._id}
-                  className="btn btn-success mr-1"
-                >
-                  Comments
-                </Link>
-                {post.user === auth.user.id ? (
-                  <button
-                    className="btn btn-danger mr-1"
-                    type="button"
-                    onClick={this.onDeleteClick.bind(this, post._id)}
-                  >
-                    Delete Post
-                  </button>
-                ) : null}
-              </span>
-            ) : null}
           </div>
         </div>
       </div>
@@ -66,7 +40,6 @@ PostItem.defaultProps = {
 };
 
 PostItem.propTypes = {
-  //deletePost: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };

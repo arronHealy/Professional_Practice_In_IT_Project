@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../../utilities/Spinner";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { getProfilePost } from "../../actions/profileActions";
 
 import PostItem from "./PostItem";

@@ -50,9 +50,7 @@ class Navbar extends Component {
           <Link className="nav-link" to="/cart">
             <div>
               <i className="fas fa-shopping-cart mr-2 h-25 w-25" />
-              <span className="num-books bg-transparent h-25 w-25">
-                {cart.length}
-              </span>
+              <span className="num-books bg-success ml-1">{cart.length}</span>
             </div>
           </Link>
         </li>

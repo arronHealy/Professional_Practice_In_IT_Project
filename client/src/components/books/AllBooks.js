@@ -1,38 +1,36 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import isEmpty from "../../validation/is-empty";
 import PropTypes from "prop-types";
 
 import Spinner from "../../utilities/Spinner";
 import BookItem from "./BookItem";
 
 import { getProfiles } from "../../actions/profileActions";
-import Books from "../dashboard/Books";
 
 class AllBooks extends Component {
-    componentDidMount() {
-        this.props.getProfiles();
-      }
-   
+  componentDidMount() {
+    this.props.getProfiles();
+  }
+
   render() {
     const { profiles, loading } = this.props.profile;
 
     let bookItems;
 
     if (profiles === null || loading) {
-        bookItems = <Spinner />;
+      bookItems = <Spinner />;
     } else {
       if (profiles.length > 0) {
         bookItems = profiles.map(profile => (
-            <BookItem key={profile._id} profile={profile} />
-            ));
+          <BookItem key={profile._id} profile={profile} />
+        ));
       } else {
         bookItems = <h4>No Books found!</h4>;
       }
     }
-    
+
     return (
-        <div className="col-md-12">
+      <div className="col-md-12">
         <h1 className="display-4 text-center">All Books for Sale</h1>
         <p className="lead text-center">
           Browse and Connect with Sellers to find your Favorite Book
@@ -44,15 +42,15 @@ class AllBooks extends Component {
 }
 
 AllBooks.propTypes = {
-    getProfiles: PropTypes.func.isRequired,
-    profile: PropTypes.object.isRequired
-  };
-  
-  const mapStateToProps = state => ({
-    profile: state.profile
-  });
-  
+  getProfiles: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  profile: state.profile
+});
+
 export default connect(
-    mapStateToProps,
-     {  getProfiles }
+  mapStateToProps,
+  { getProfiles }
 )(AllBooks);
