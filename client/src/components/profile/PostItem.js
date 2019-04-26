@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { Link } from "react-router-dom";
 import isEmpty from "../../validation/is-empty";
 
 class PostItem extends Component {
   render() {
-    const { post, auth, showActions, profileId } = this.props;
+    const { post, auth } = this.props;
 
     return (
       <div className="card card-body mb-3">
@@ -34,10 +33,6 @@ class PostItem extends Component {
     );
   }
 }
-
-PostItem.defaultProps = {
-  showActions: true
-};
 
 PostItem.propTypes = {
   post: PropTypes.object.isRequired,
