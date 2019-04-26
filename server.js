@@ -16,8 +16,6 @@ const path = require("path");
 
 const app = express();
 
-app.get("/", (req, res) => res.send("Test route for backend"));
-
 //body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
