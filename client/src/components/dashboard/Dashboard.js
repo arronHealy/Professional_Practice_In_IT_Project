@@ -7,6 +7,7 @@ import Spinner from "../../utilities/Spinner";
 import { Link } from "react-router-dom";
 import ProfileActions from "./ProfileActions";
 import Books from "./Books";
+
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
