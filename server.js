@@ -31,7 +31,7 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.log(err));
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 //passport middleware
 app.use(passport.initialize());
