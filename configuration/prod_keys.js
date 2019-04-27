@@ -1,4 +1,6 @@
+import keys from "./dev_keys";
+
 module.exports = {
-  mongoConnect: process.env.Mongo_URI,
-  secretKey: process.env.SecretKey
+  mongoConnect: keys.mongoConnect,
+  secretKey: keys.secretKey
 };
